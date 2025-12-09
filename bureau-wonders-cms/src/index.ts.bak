@@ -670,7 +670,7 @@ Strategic partnerships can amplify brand reach, enhance credibility, and create 
       content: `# Bureau of Wonders Expands to Asia-Pacific Region
 
 We're excited to announce a significant milestone in our agency's growth.`,
-      category: 'News' as const,
+      category: 'News',
       tags: ['company news', 'expansion', 'asia-pacific', 'singapore'],
       author: 'The Bureau of Wonders',
       publishedAt: '2025-09-01T10:00:00.000Z',

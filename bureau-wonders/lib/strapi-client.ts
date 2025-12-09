@@ -5,6 +5,8 @@ import {
   BlogPost,
   CaseStudy,
   JobListing,
+  Service,
+  Industry,
   SiteSettings,
   ContactFormData,
   StrapiResponse,
@@ -270,6 +272,68 @@ export class StrapiClient {
       {
         params: {
           sort: 'publishedAt:desc',
+          filters: {
+            publishedAt: { $lte: new Date().toISOString() },
+          },
+        },
+      }
+    );
+
+    return response.data.data || [];
+  }
+
+  /**
+   * Fetch all services
+   */
+  async getServices(): Promise<Service[]> {
+    const response = await this.client.get<StrapiResponse<Service[]>>(
+      '/services',
+      {
+        params: {
+          sort: 'order:asc',
+          filters: {
+            publishedAt: { $lte: new Date().toISOString() },
+          },
+        },
+      }
+    );
+
+    return response.data.data || [];
+  }
+
+  /**
+   * Fetch a single service by slug
+   */
+  async getService(slug: string): Promise<Service> {
+    const response = await this.client.get<StrapiResponse<Service[]>>(
+      '/services',
+      {
+        params: {
+          filters: { slug: { $eq: slug } },
+        },
+      }
+    );
+
+    const services = response.data.data;
+    if (!services || services.length === 0) {
+      throw new StrapiClientError(
+        `Service with slug "${slug}" not found.`,
+        404
+      );
+    }
+
+    return services[0];
+  }
+
+  /**
+   * Fetch all industries
+   */
+  async getIndustries(): Promise<Industry[]> {
+    const response = await this.client.get<StrapiResponse<Industry[]>>(
+      '/industries',
+      {
+        params: {
+          sort: 'order:asc',
           filters: {
             publishedAt: { $lte: new Date().toISOString() },
           },

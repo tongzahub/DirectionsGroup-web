@@ -1,147 +1,114 @@
-# Bureau of Wonders - Quick Start Guide
+# Quick Start Guide
 
-This guide will help you get both the frontend and CMS backend running.
+## 🚀 Get Everything Running in 5 Minutes
 
-## Prerequisites
-
-- Node.js 18.x or higher
-- PostgreSQL 12 or higher
-- npm
-
-## Quick Setup (5 minutes)
-
-### 1. Set Up Database
-
+### Step 1: Build & Start Strapi (Terminal 1)
 ```bash
-# Create PostgreSQL database
-createdb -U postgres bureau_wonders_cms
-
-# Or using psql
-psql -U postgres
-CREATE DATABASE bureau_wonders_cms;
-\q
-```
-
-### 2. Start CMS Backend
-
-```bash
-# Navigate to CMS directory
 cd bureau-wonders-cms
-
-# Install dependencies (first time only)
-npm install
-
-# Update .env with your PostgreSQL password if needed
-# Edit: bureau-wonders-cms/.env
-
-# Start Strapi in development mode
+npm run build
 npm run develop
 ```
+Wait for: `Server started on http://localhost:1337`
 
-Wait for Strapi to start, then:
-- Open http://localhost:1337/admin
-- Create your admin account
-- You're ready to configure content types!
+### Step 2: Configure Permissions
+1. Open: http://localhost:1337/admin
+2. Login with your credentials
+3. Go to: **Settings → Roles → Public**
+4. Enable for **Service**: `find` ✅ and `findOne` ✅
+5. Enable for **Industry**: `find` ✅ and `findOne` ✅
+6. Click **Save**
 
-### 3. Start Frontend (in a new terminal)
-
+### Step 3: Seed Data (Terminal 2)
 ```bash
-# Navigate to frontend directory
+cd bureau-wonders-cms
+node seed-comprehensive.mjs
+```
+You should see: ✅ Created service, ✅ Created industry, etc.
+
+### Step 4: Publish Content
+In Strapi Admin (http://localhost:1337/admin):
+1. Go to **Content Manager**
+2. For each content type (Services, Industries, Blog Posts, Case Studies, Job Listings):
+   - Click each item
+   - Click **Publish** button
+   - Repeat for all items
+
+### Step 5: Start Next.js (Terminal 3)
+```bash
 cd bureau-wonders
-
-# Install dependencies (first time only)
-npm install
-
-# Start Next.js development server
 npm run dev
 ```
 
-Open http://localhost:3000 to view the frontend.
+### Step 6: View Your Pages! 🎉
+- **Services**: http://localhost:3000/services
+- **Service Detail**: http://localhost:3000/services/communications-pr
+- **Blog**: http://localhost:3000/blog
+- **Blog Filtered**: http://localhost:3000/blog?category=News
+- **Careers**: http://localhost:3000/careers
 
-## Project Structure
+## ✅ What You Get
 
-```
-.
-├── bureau-wonders/          # Next.js frontend
-│   ├── app/                # Pages (App Router)
-│   ├── components/         # React components
-│   ├── lib/               # Utilities and API client
-│   └── types/             # TypeScript definitions
-│
-├── bureau-wonders-cms/     # Strapi CMS backend
-│   ├── config/            # Configuration files
-│   ├── src/               # API and content types
-│   └── .env              # Environment variables
-│
-├── CMS_SETUP.md           # Detailed CMS setup guide
-└── QUICK_START.md         # This file
-```
+### Services Page
+- 3 service cards (Communications & PR, Experiences & Events, CRM)
+- 10 industry cards with icons
+- Click any service to see details
 
-## What's Been Completed
+### Service Detail Pages
+- Full description of each service
+- Related services section
+- Contact CTA
 
-✅ **Task 1**: Next.js project initialized with Tailwind CSS
-✅ **Task 2**: Strapi CMS backend configured with PostgreSQL
+### Blog Page
+- 3 blog posts
+- Category filter tabs
+- Filter by: All, News, Case Studies, Thought Leadership
 
-## Next Steps
+### Careers Page
+- Culture statement
+- Company values
+- 3 job listings
 
-Follow the implementation plan in `.kiro/specs/bureau-wonders-mvp/tasks.md`:
+## 📝 Content Created
 
-1. **Task 3**: Create Strapi content types
-   - Page, Blog Post, Case Study, Job Listing, Contact Inquiry, Site Settings
+- ✅ 3 Services
+- ✅ 10 Industries
+- ✅ 3 Blog Posts
+- ✅ 2 Case Studies
+- ✅ 3 Job Listings
 
-2. **Task 4**: Configure permissions and email
-   - Set up public API access
-   - Configure contact form email notifications
+## 🔧 Troubleshooting
 
-3. **Task 5+**: Build frontend components and pages
+**Seed script shows errors?**
+- Make sure Strapi is running
+- Check permissions are set correctly
+- Verify API token in seed script
 
-## Useful Commands
+**Content not showing on frontend?**
+- Make sure content is Published in Strapi
+- Check Public role permissions
+- Restart Next.js dev server
 
-### Frontend (bureau-wonders)
-```bash
-npm run dev          # Start development server
-npm run build        # Build for production
-npm run start        # Start production server
-npm run lint         # Run ESLint
-```
+**Need new API token?**
+1. Settings → API Tokens in Strapi
+2. Create new token (Full Access)
+3. Copy token
+4. Update `TOKEN` in `seed-comprehensive.mjs`
 
-### Backend (bureau-wonders-cms)
-```bash
-npm run develop      # Start with auto-reload
-npm run build        # Build admin panel
-npm run start        # Start production server
-npm run strapi       # Show all Strapi commands
-```
+## 📚 Documentation
 
-## Troubleshooting
+- `SETUP_INSTRUCTIONS.md` - Detailed setup guide
+- `PAGES_UPDATE_SUMMARY.md` - Technical changes summary
+- `สรุปการอัพเดท.md` - Thai language summary
+- `GENERATE_CONTENT_TYPES.md` - Content type generation guide
 
-### CMS won't start
-- Check PostgreSQL is running: `pg_isready`
-- Verify database exists: `psql -U postgres -l | grep bureau_wonders_cms`
-- Check `.env` credentials match your PostgreSQL setup
+## 🎯 Next Steps
 
-### Port conflicts
-- CMS uses port 1337 (change in `bureau-wonders-cms/.env`)
-- Frontend uses port 3000 (change with `npm run dev -- -p 3001`)
-
-### Database connection errors
-- Update password in `bureau-wonders-cms/.env`
-- Grant permissions: `psql -U postgres -c "GRANT ALL PRIVILEGES ON DATABASE bureau_wonders_cms TO postgres;"`
-
-## Documentation
-
-- **CMS_SETUP.md** - Comprehensive CMS setup guide
-- **bureau-wonders/README.md** - Frontend documentation
-- **bureau-wonders-cms/README.md** - CMS documentation
-- **bureau-wonders/SETUP.md** - Detailed setup summary
-
-## Getting Help
-
-- Check the troubleshooting sections in documentation
-- Review Strapi docs: https://docs.strapi.io/
-- Review Next.js docs: https://nextjs.org/docs
+1. Add images to content in Strapi
+2. Customize content to match your brand
+3. Add more blog posts and case studies
+4. Update job listings
+5. Optimize SEO metadata
 
 ---
 
-**Current Status**: Backend configured, ready for content type creation
-**Next Task**: Task 3 - Create Strapi content types
+**Need help?** Check the detailed documentation files above!

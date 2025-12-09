@@ -84,11 +84,40 @@ export interface CaseStudy {
 export interface JobListing {
   id: number;
   title: string;
-  department: string;
+  slug: string;
+  department?: string;
   location: string;
   type: 'Full-time' | 'Part-time' | 'Contract';
   description: RichText;
-  requirements: RichText;
+  requirements?: RichText;
+  publishedAt: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+// Service content type
+export interface Service {
+  id: number;
+  title: string;
+  slug: string;
+  description: RichText;
+  icon?: string;
+  order: number;
+  seoTitle?: string;
+  metaDescription?: string;
+  publishedAt: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+// Industry content type
+export interface Industry {
+  id: number;
+  name: string;
+  slug: string;
+  description?: RichText;
+  icon?: string;
+  order: number;
   publishedAt: string;
   createdAt: string;
   updatedAt: string;
