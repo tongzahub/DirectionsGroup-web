@@ -430,6 +430,45 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiAboutSectionAboutSection
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'about_sections';
+  info: {
+    description: 'Sections for the About page with submenu navigation';
+    displayName: 'About Section';
+    pluralName: 'about-sections';
+    singularName: 'about-section';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    content: Schema.Attribute.RichText & Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::about-section.about-section'
+    > &
+      Schema.Attribute.Private;
+    metaDescription: Schema.Attribute.Text;
+    order: Schema.Attribute.Integer &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<0>;
+    publishedAt: Schema.Attribute.DateTime;
+    seoTitle: Schema.Attribute.String;
+    slug: Schema.Attribute.UID<'title'> & Schema.Attribute.Required;
+    title: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiBlogPostBlogPost extends Struct.CollectionTypeSchema {
   collectionName: 'blog_posts';
   info: {
@@ -1186,6 +1225,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::about-section.about-section': ApiAboutSectionAboutSection;
       'api::blog-post.blog-post': ApiBlogPostBlogPost;
       'api::case-study.case-study': ApiCaseStudyCaseStudy;
       'api::contact-inquiry.contact-inquiry': ApiContactInquiryContactInquiry;

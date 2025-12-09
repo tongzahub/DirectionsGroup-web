@@ -1,0 +1,232 @@
+module.exports = {
+  async seed(strapi) {
+    console.log('Seeding About Sections...');
+
+    const sections = [
+      {
+        title: 'Brand Story',
+        slug: 'brand-story',
+        order: 1,
+        content: `# Our Brand Story
+
+The Bureau of Wonders was born from a simple yet powerful belief: that luxury brands deserve communications partners who truly understand the art of storytelling and the science of building desire.
+
+Founded in the heart of New York, our journey began when a group of seasoned luxury brand professionals came together with a shared vision. We had worked with some of the world's most prestigious brands and witnessed firsthand the transformative power of authentic, strategic communications.
+
+## The Beginning
+
+Our founders brought together decades of experience from luxury houses, leading PR agencies, and high-end event production companies. What united us was a passion for excellence and a deep appreciation for the craftsmanship, heritage, and artistry that define luxury brands.
+
+## Our Evolution
+
+Over the years, we've grown from a boutique consultancy to a full-service luxury communications agency. Yet, we've never lost sight of what makes us special: our intimate understanding of luxury, our commitment to personalized service, and our ability to create moments of wonder that captivate audiences.
+
+## Today
+
+Today, The Bureau of Wonders stands as a trusted partner to luxury brands across multiple sectors. We've orchestrated unforgettable product launches, crafted compelling brand narratives, and built lasting relationships between brands and their most valued customers.
+
+Every project we undertake is infused with the same dedication to excellence that our clients bring to their own creations. Because we believe that in the world of luxury, nothing less than extraordinary will do.`,
+        seoTitle: 'Our Brand Story - The Bureau of Wonders',
+        metaDescription: 'Discover the story behind The Bureau of Wonders, from our founding vision to becoming a trusted luxury brand communications partner.',
+        publishedAt: new Date().toISOString(),
+      },
+      {
+        title: 'Brand Philosophy',
+        slug: 'brand-philosophy',
+        order: 2,
+        content: `# Our Brand Philosophy
+
+## The Art of Wonder
+
+At The Bureau of Wonders, we believe that luxury is not just about products—it's about creating moments of wonder, surprise, and delight. Every touchpoint, every communication, every experience should evoke emotion and build desire.
+
+## Authenticity Above All
+
+In an age of digital noise and fleeting trends, we champion authenticity. We help luxury brands tell their true stories—stories rooted in heritage, craftsmanship, and genuine value. Because today's discerning consumers can sense authenticity, and they reward it with their loyalty.
+
+## The Power of Relationships
+
+Luxury is personal. It's about relationships built on trust, understanding, and shared values. We don't just create campaigns; we build bridges between brands and the people who will cherish them for a lifetime.
+
+## Excellence in Every Detail
+
+Just as luxury brands obsess over every stitch, every finish, every detail, we bring the same meticulous attention to our work. From the first strategic conversation to the final execution, excellence is our standard.
+
+## Innovation Meets Tradition
+
+We honor the traditions and heritage that make luxury brands special, while embracing innovation in how we communicate their stories. We blend time-tested PR principles with cutting-edge digital strategies to create campaigns that resonate across generations.
+
+## Sustainability and Responsibility
+
+We believe that true luxury is sustainable luxury. We encourage and support our clients in communicating their commitments to environmental and social responsibility, because the future of luxury depends on it.
+
+## Creating Legacy
+
+Every brand we work with is building a legacy. Our role is to ensure that legacy is communicated with clarity, celebrated with creativity, and preserved with care. We're not just in the business of marketing—we're in the business of building enduring brand value.`,
+        seoTitle: 'Our Brand Philosophy - The Bureau of Wonders',
+        metaDescription: 'Explore the core philosophy that guides our approach to luxury brand communications: authenticity, excellence, and the art of creating wonder.',
+        publishedAt: new Date().toISOString(),
+      },
+      {
+        title: 'Who We Are',
+        slug: 'who-we-are',
+        order: 3,
+        content: `# Who We Are
+
+## A Team of Luxury Specialists
+
+The Bureau of Wonders is home to a diverse team of communications professionals, each bringing unique expertise and a shared passion for luxury brands.
+
+## Our Expertise
+
+### Strategic Communications
+Our strategists have worked with luxury brands across multiple sectors, from haute horlogerie to high jewelry, from luxury real estate to premium hospitality. They understand the nuances of luxury marketing and the expectations of high-net-worth individuals.
+
+### Creative Excellence
+Our creative team includes award-winning copywriters, art directors, and content creators who know how to craft messages that resonate with sophisticated audiences. They've created campaigns for some of the world's most prestigious brands.
+
+### Media Relations
+Our PR professionals have deep relationships with top-tier media outlets, luxury lifestyle publications, and influential journalists. They know how to secure the coverage that matters most to luxury brands.
+
+### Event Production
+Our event specialists have orchestrated everything from intimate VIP dinners to large-scale brand activations. They understand that in luxury, every detail matters.
+
+### Digital Innovation
+Our digital team stays ahead of trends in social media, influencer marketing, and digital storytelling. They know how to leverage technology while maintaining the exclusivity and prestige that luxury brands require.
+
+## Our Culture
+
+We foster a culture of collaboration, creativity, and continuous learning. Our team members are encouraged to bring fresh ideas, challenge conventions, and push boundaries—all while maintaining the highest standards of professionalism and client service.
+
+## Our Commitment
+
+We're committed to being more than just an agency—we're partners in our clients' success. We invest time in understanding each brand's unique story, challenges, and aspirations. And we bring that understanding to every project we undertake.`,
+        seoTitle: 'Who We Are - Meet The Bureau of Wonders Team',
+        metaDescription: 'Meet the team behind The Bureau of Wonders: luxury communications specialists, creative experts, and strategic thinkers dedicated to your brand\'s success.',
+        publishedAt: new Date().toISOString(),
+      },
+      {
+        title: 'Leadership Introduction',
+        slug: 'leadership-introduction',
+        order: 4,
+        content: `# Our Leadership
+
+## Guiding The Bureau of Wonders
+
+Our leadership team brings together decades of experience in luxury brand management, communications, and strategic consulting. They've worked with iconic brands, launched groundbreaking campaigns, and built lasting relationships in the luxury industry.
+
+## Sophia Chen - Founder & CEO
+
+**"Luxury is about creating desire through authenticity and artistry."**
+
+With over 20 years of experience in luxury brand communications, Sophia founded The Bureau of Wonders with a vision to create an agency that truly understands the luxury mindset. Prior to founding the agency, she led communications for several prestigious jewelry and watch brands, and served as VP of Marketing for a leading luxury hospitality group.
+
+Sophia holds an MBA from Columbia Business School and a degree in Art History from Yale University. She's a frequent speaker at luxury industry conferences and has been featured in publications including Vogue Business, Luxury Daily, and The Business of Fashion.
+
+## Marcus Beaumont - Chief Strategy Officer
+
+**"Strategy without creativity is just planning. Creativity without strategy is just art. We bring both."**
+
+Marcus brings 18 years of strategic consulting experience to The Bureau of Wonders. He's developed brand strategies for luxury fashion houses, high-end real estate developers, and premium automotive brands. His analytical approach combined with creative thinking has helped numerous brands navigate market challenges and seize new opportunities.
+
+Before joining The Bureau of Wonders, Marcus was a Partner at a leading brand strategy consultancy. He holds degrees from Oxford University and INSEAD.
+
+## Isabella Rodriguez - Creative Director
+
+**"Every brand has a story worth telling. Our job is to tell it beautifully."**
+
+Isabella's creative vision has shaped campaigns for some of the world's most recognizable luxury brands. With a background in fashion journalism and brand creative direction, she brings a unique perspective that blends editorial sophistication with commercial effectiveness.
+
+Her work has won numerous industry awards, including Cannes Lions and Clio Awards. Isabella previously served as Creative Director for a prestigious fashion house and as Features Editor for a leading luxury lifestyle magazine.
+
+## James Wellington - Managing Director, Client Services
+
+**"Our clients' success is our success. It's that simple."**
+
+James ensures that every client receives exceptional service and strategic guidance. With 15 years of experience in luxury brand management and client relations, he's known for his ability to build strong partnerships and deliver results that exceed expectations.
+
+Prior to joining The Bureau of Wonders, James held senior positions at leading luxury PR agencies and worked directly for several high-end brands. He's a graduate of the London School of Economics.`,
+        seoTitle: 'Leadership Team - The Bureau of Wonders',
+        metaDescription: 'Meet the leadership team at The Bureau of Wonders: experienced luxury brand professionals guiding our strategic vision and creative excellence.',
+        publishedAt: new Date().toISOString(),
+      },
+      {
+        title: 'Our Values',
+        slug: 'our-values',
+        order: 5,
+        content: `# Our Values
+
+These core values guide everything we do at The Bureau of Wonders. They shape how we work with clients, how we collaborate as a team, and how we approach every project.
+
+## Excellence
+
+**We strive for perfection in everything we do.**
+
+Excellence isn't just a goal—it's our standard. From strategic planning to creative execution, from client communications to event production, we bring meticulous attention to detail and an unwavering commitment to quality. We believe that luxury brands deserve nothing less than exceptional service and outstanding results.
+
+## Innovation
+
+**We push boundaries and embrace new ideas.**
+
+The luxury industry is evolving, and we evolve with it. We stay ahead of trends, experiment with new technologies, and constantly seek fresh approaches to communications challenges. But we never innovate for innovation's sake—every new idea must serve our clients' strategic objectives and enhance their brand value.
+
+## Integrity
+
+**We build trust through transparency and honesty.**
+
+In an industry built on relationships, integrity is everything. We're honest with our clients about what's possible, transparent about our processes, and accountable for our results. We protect our clients' confidentiality, respect their trust, and always act in their best interests.
+
+## Collaboration
+
+**We work as partners with our clients.**
+
+We don't believe in the traditional agency-client hierarchy. Instead, we see ourselves as partners in our clients' success. We listen carefully, share ideas openly, and work together to achieve shared goals. The best results come from true collaboration, where diverse perspectives and expertise come together.
+
+## Creativity
+
+**We bring imagination to every project.**
+
+Creativity is at the heart of what we do. Whether we're crafting a press release, planning an event, or developing a social media strategy, we approach every challenge with fresh eyes and imaginative thinking. We believe that creative solutions are often the most effective solutions—especially in the world of luxury, where standing out matters.
+
+## Respect
+
+**We honor the heritage and craftsmanship of luxury brands.**
+
+We have deep respect for the artisans, designers, and visionaries who create luxury products. We understand that behind every luxury brand is a story of dedication, skill, and passion. Our role is to honor that story and communicate it in ways that resonate with audiences who appreciate true quality.
+
+## Sustainability
+
+**We support responsible luxury.**
+
+We believe that the future of luxury is sustainable luxury. We encourage our clients to embrace environmental and social responsibility, and we help them communicate their commitments authentically. Because true luxury should enhance the world, not diminish it.`,
+        seoTitle: 'Our Values - The Bureau of Wonders',
+        metaDescription: 'Discover the core values that guide The Bureau of Wonders: excellence, innovation, integrity, collaboration, creativity, respect, and sustainability.',
+        publishedAt: new Date().toISOString(),
+      },
+    ];
+
+    for (const section of sections) {
+      try {
+        // Check if section already exists
+        const existing = await strapi.db.query('api::about-section.about-section').findOne({
+          where: { slug: section.slug },
+        });
+
+        if (existing) {
+          console.log(`✓ Section already exists: ${section.title}`);
+          continue;
+        }
+
+        // Create new section
+        await strapi.db.query('api::about-section.about-section').create({
+          data: section,
+        });
+        console.log(`✓ Created section: ${section.title}`);
+      } catch (error) {
+        console.error(`✗ Error creating section ${section.title}:`, error.message);
+      }
+    }
+
+    console.log('\n✓ About Sections seeding completed!');
+  },
+};

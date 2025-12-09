@@ -1,6 +1,7 @@
 import axios, { AxiosInstance, AxiosError } from 'axios';
 import {
   Page,
+  AboutSection,
   BlogPost,
   CaseStudy,
   JobListing,
@@ -107,6 +108,49 @@ export class StrapiClient {
     }
 
     return pages[0];
+  }
+
+  /**
+   * Fetch all about sections
+   */
+  async getAboutSections(): Promise<AboutSection[]> {
+    const response = await this.client.get<StrapiResponse<AboutSection[]>>(
+      '/about-sections',
+      {
+        params: {
+          sort: 'order:asc',
+          filters: {
+            publishedAt: { $lte: new Date().toISOString() },
+          },
+        },
+      }
+    );
+
+    return response.data.data || [];
+  }
+
+  /**
+   * Fetch a single about section by slug
+   */
+  async getAboutSection(slug: string): Promise<AboutSection> {
+    const response = await this.client.get<StrapiResponse<AboutSection[]>>(
+      '/about-sections',
+      {
+        params: {
+          filters: { slug: { $eq: slug } },
+        },
+      }
+    );
+
+    const sections = response.data.data;
+    if (!sections || sections.length === 0) {
+      throw new StrapiClientError(
+        `About section with slug "${slug}" not found.`,
+        404
+      );
+    }
+
+    return sections[0];
   }
 
   /**

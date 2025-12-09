@@ -1,0 +1,41 @@
+{
+  "kind": "collectionType",
+  "collectionName": "about_sections",
+  "info": {
+    "singularName": "about-section",
+    "pluralName": "about-sections",
+    "displayName": "About Section",
+    "description": "Sections for the About page with submenu navigation"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    },
+    "content": {
+      "type": "richtext",
+      "required": true
+    },
+    "order": {
+      "type": "integer",
+      "default": 0,
+      "required": true
+    },
+    "seoTitle": {
+      "type": "string"
+    },
+    "metaDescription": {
+      "type": "text"
+    }
+  }
+}

@@ -28,6 +28,20 @@ export interface Page {
   updatedAt: string;
 }
 
+// About Section content type
+export interface AboutSection {
+  id: number;
+  title: string;
+  slug: string;
+  content: RichText;
+  order: number;
+  seoTitle?: string;
+  metaDescription?: string;
+  publishedAt: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
 // Blog Post content type
 export interface BlogPost {
   id: number;
