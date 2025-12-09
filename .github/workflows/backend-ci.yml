@@ -1,0 +1,71 @@
+name: Backend CI
+
+on:
+  pull_request:
+    branches: [main, develop]
+    paths:
+      - 'bureau-wonders-cms/**'
+      - '.github/workflows/backend-ci.yml'
+
+jobs:
+  lint-and-build:
+    runs-on: ubuntu-latest
+    
+    defaults:
+      run:
+        working-directory: bureau-wonders-cms
+    
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: strapi
+          POSTGRES_PASSWORD: strapi
+          POSTGRES_DB: strapi_test
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: bureau-wonders-cms/package-lock.json
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Build Strapi
+        run: npm run build
+        env:
+          DATABASE_CLIENT: postgres
+          DATABASE_HOST: localhost
+          DATABASE_PORT: 5432
+          DATABASE_NAME: strapi_test
+          DATABASE_USERNAME: strapi
+          DATABASE_PASSWORD: strapi
+          DATABASE_SSL: false
+          APP_KEYS: test-key
+          API_TOKEN_SALT: test-salt
+          ADMIN_JWT_SECRET: test-secret
+          TRANSFER_TOKEN_SALT: test-salt
+          JWT_SECRET: test-jwt
+          NODE_ENV: production
+      
+      - name: Check build output
+        run: |
+          if [ -d "dist" ]; then
+            echo "✅ Build successful"
+          else
+            echo "❌ Build failed"
+            exit 1
+          fi
