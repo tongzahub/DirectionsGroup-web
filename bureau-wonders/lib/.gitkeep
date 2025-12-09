@@ -1,0 +1,5 @@
+# Lib directory
+This directory contains utility functions and services:
+- API client for Strapi integration
+- Helper functions
+- Constants and configuration

@@ -1,0 +1,13 @@
+{
+  "buildCommand": "npm run build",
+  "devCommand": "npm run dev",
+  "installCommand": "npm install",
+  "framework": "nextjs",
+  "outputDirectory": ".next",
+  "regions": ["iad1"],
+  "env": {
+    "NEXT_PUBLIC_STRAPI_URL": "@strapi-url",
+    "STRAPI_API_TOKEN": "@strapi-api-token",
+    "NEXT_PUBLIC_SITE_URL": "@site-url"
+  }
+}

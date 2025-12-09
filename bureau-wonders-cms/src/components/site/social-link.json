@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_site_social_links",
+  "info": {
+    "displayName": "Social Link",
+    "description": "Social media platform and URL"
+  },
+  "options": {},
+  "attributes": {
+    "platform": {
+      "type": "string",
+      "required": true
+    },
+    "url": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

@@ -1,0 +1,6 @@
+# Components directory
+This directory contains reusable React components organized by type:
+- Layout components (Header, Footer, Navigation)
+- UI components (Button, Input, Card)
+- Content components (Hero, ContentSection, ImageGallery)
+- Specialized components (BlogPostCard, CaseStudyCard, JobListingCard, ContactForm)

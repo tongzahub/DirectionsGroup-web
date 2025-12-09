@@ -1,0 +1,5 @@
+# Types directory
+This directory contains TypeScript type definitions and interfaces:
+- Content type interfaces (Page, BlogPost, CaseStudy, JobListing, etc.)
+- API response types
+- Component prop types

@@ -1,0 +1,50 @@
+{
+  "kind": "singleType",
+  "collectionName": "site_settings",
+  "info": {
+    "singularName": "site-setting",
+    "pluralName": "site-settings",
+    "displayName": "Site Settings",
+    "description": "Global site configuration and content"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "siteName": {
+      "type": "string",
+      "required": true,
+      "default": "The Bureau of Wonders"
+    },
+    "contactEmail": {
+      "type": "email",
+      "required": true
+    },
+    "contactPhone": {
+      "type": "string",
+      "required": false
+    },
+    "officeAddress": {
+      "type": "text",
+      "required": false
+    },
+    "socialLinks": {
+      "type": "component",
+      "repeatable": true,
+      "component": "site.social-link"
+    },
+    "homepageIntro": {
+      "type": "richtext",
+      "required": false
+    },
+    "cultureStatement": {
+      "type": "richtext",
+      "required": false
+    },
+    "values": {
+      "type": "json",
+      "default": []
+    }
+  }
+}

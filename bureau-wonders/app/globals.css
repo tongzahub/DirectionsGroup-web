@@ -1,0 +1,192 @@
+@import "tailwindcss";
+
+:root {
+  /* Blue-White Theme Colors */
+  --primary-blue: #4DA3FF;
+  --darker-blue: #1877F2;
+  --light-blue-bg: #EAF6FF;
+  --mist-blue: #EAF6FF;
+
+  /* Neutral Colors */
+  --pure-white: #FFFFFF;
+  --snow-white: #F7F9FC;
+  --dark-gray: #1A1A1A;
+  --cool-gray: #6B7280;
+  --soft-gray: #E5E7EB;
+
+  /* Accent Colors */
+  --success: #22C55E;
+  --warning: #F59E0B;
+  --error: #EF4444;
+}
+
+@theme inline {
+  /* Primary Colors */
+  --color-primary: var(--primary-blue);
+  --color-primary-dark: var(--darker-blue);
+  --color-primary-light: var(--light-blue-bg);
+
+  /* Neutral Colors */
+  --color-white: var(--pure-white);
+  --color-snow: var(--snow-white);
+  --color-gray-dark: var(--dark-gray);
+  --color-gray: var(--cool-gray);
+  --color-gray-light: var(--soft-gray);
+  --color-mist: var(--mist-blue);
+
+  /* Accent Colors */
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-error: var(--error);
+
+  /* Typography */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* Spacing (4px base unit) */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  --spacing-3xl: 4rem;
+  --spacing-4xl: 6rem;
+
+  /* Border Radius */
+  --radius-sm: 0.75rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.25rem;
+
+  /* Shadows */
+  --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --shadow-card-hover: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--pure-white);
+  color: var(--dark-gray);
+  font-family: var(--font-sans);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Touch manipulation for better mobile interaction */
+.touch-manipulation {
+  touch-action: manipulation;
+}
+
+/* Ensure minimum touch target sizes on mobile */
+@media (max-width: 767px) {
+  button,
+  a[role="button"],
+  input[type="button"],
+  input[type="submit"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Improve text readability on mobile */
+@media (max-width: 767px) {
+  body {
+    font-size: 16px; /* Prevents zoom on iOS */
+    -webkit-text-size-adjust: 100%;
+  }
+}
+
+/* Responsive images */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Prevent horizontal scroll on mobile */
+body {
+  overflow-x: hidden;
+}
+
+/* Better focus states for accessibility */
+*:focus-visible {
+  outline: 2px solid var(--primary-blue);
+  outline-offset: 2px;
+}
+
+/* Animation keyframes for 60fps performance */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animation utility classes */
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.4s ease-out forwards;
+}
+
+.animate-slide-down {
+  animation: slideDown 0.4s ease-out forwards;
+}
+
+/* Ensure animations run at 60fps */
+@media (prefers-reduced-motion: no-preference) {
+  * {
+    will-change: auto;
+  }
+  
+  .animate-fade-in,
+  .animate-slide-up,
+  .animate-slide-down {
+    will-change: opacity, transform;
+  }
+}
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
