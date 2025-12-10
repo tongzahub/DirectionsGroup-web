@@ -47,9 +47,9 @@ export default async function ServicesPage() {
         seoTitle: 'Services - The Bureau of Wonders',
         metaDescription: 'Discover our luxury brand communications services: Communications & PR, Experiences & Events, and Customer Relationship Management.',
         content: 'Our comprehensive services for luxury brands',
-        publishedAt: new Date().toISOString(),
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString(),
+        publishedAt: '2024-01-01T00:00:00.000Z',
+        createdAt: '2024-01-01T00:00:00.000Z',
+        updatedAt: '2024-01-01T00:00:00.000Z',
       };
     }
 
@@ -67,9 +67,9 @@ export default async function ServicesPage() {
           order: 1,
           seoTitle: 'Communications & PR Services',
           metaDescription: 'Strategic communications and PR services for luxury brands.',
-          publishedAt: new Date().toISOString(),
-          createdAt: new Date().toISOString(),
-          updatedAt: new Date().toISOString(),
+          publishedAt: '2024-01-01T00:00:00.000Z',
+          createdAt: '2024-01-01T00:00:00.000Z',
+          updatedAt: '2024-01-01T00:00:00.000Z',
         },
         {
           id: 2,
@@ -80,9 +80,9 @@ export default async function ServicesPage() {
           order: 2,
           seoTitle: 'Experiences & Events Services',
           metaDescription: 'Create unforgettable luxury brand experiences.',
-          publishedAt: new Date().toISOString(),
-          createdAt: new Date().toISOString(),
-          updatedAt: new Date().toISOString(),
+          publishedAt: '2024-01-01T00:00:00.000Z',
+          createdAt: '2024-01-01T00:00:00.000Z',
+          updatedAt: '2024-01-01T00:00:00.000Z',
         },
         {
           id: 3,
@@ -93,9 +93,9 @@ export default async function ServicesPage() {
           order: 3,
           seoTitle: 'CRM Services',
           metaDescription: 'Build lasting customer relationships with personalized CRM.',
-          publishedAt: new Date().toISOString(),
-          createdAt: new Date().toISOString(),
-          updatedAt: new Date().toISOString(),
+          publishedAt: '2024-01-01T00:00:00.000Z',
+          createdAt: '2024-01-01T00:00:00.000Z',
+          updatedAt: '2024-01-01T00:00:00.000Z',
         },
       ];
     }
@@ -105,16 +105,16 @@ export default async function ServicesPage() {
     } catch (industriesErr) {
       console.log('Using fallback industries data');
       industries = [
-        { id: 1, name: 'Jewelry', slug: 'jewelry', description: 'Expertise in fine jewelry communications', icon: '💎', order: 1, publishedAt: new Date().toISOString(), createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() },
-        { id: 2, name: 'Watch', slug: 'watch', description: 'Specialized knowledge in haute horlogerie', icon: '⌚', order: 2, publishedAt: new Date().toISOString(), createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() },
-        { id: 3, name: 'Fashion', slug: 'fashion', description: 'Deep understanding of luxury fashion communications', icon: '👗', order: 3, publishedAt: new Date().toISOString(), createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() },
-        { id: 4, name: 'Leather Goods', slug: 'leather-goods', description: 'Crafting narratives for premium leather goods', icon: '👜', order: 4, publishedAt: new Date().toISOString(), createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() },
-        { id: 5, name: 'Real Estate', slug: 'real-estate', description: 'Luxury property marketing and communications', icon: '🏛️', order: 5, publishedAt: new Date().toISOString(), createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() },
-        { id: 6, name: 'Finance', slug: 'finance', description: 'Private banking and wealth management communications', icon: '💰', order: 6, publishedAt: new Date().toISOString(), createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() },
-        { id: 7, name: 'Hospitality', slug: 'hospitality', description: 'Five-star hotel and resort marketing', icon: '🏨', order: 7, publishedAt: new Date().toISOString(), createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() },
-        { id: 8, name: 'Art', slug: 'art', description: 'Gallery, auction house, and fine art communications', icon: '🎨', order: 8, publishedAt: new Date().toISOString(), createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() },
-        { id: 9, name: 'Design', slug: 'design', description: 'Luxury interior design and furniture brand communications', icon: '🪑', order: 9, publishedAt: new Date().toISOString(), createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() },
-        { id: 10, name: 'Insurance', slug: 'insurance', description: 'Premium insurance and risk management communications', icon: '🛡️', order: 10, publishedAt: new Date().toISOString(), createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() },
+        { id: 1, name: 'Jewelry', slug: 'jewelry', description: 'Expertise in fine jewelry communications', icon: '💎', order: 1, publishedAt: '2024-01-01T00:00:00.000Z', createdAt: '2024-01-01T00:00:00.000Z', updatedAt: '2024-01-01T00:00:00.000Z' },
+        { id: 2, name: 'Watch', slug: 'watch', description: 'Specialized knowledge in haute horlogerie', icon: '⌚', order: 2, publishedAt: '2024-01-01T00:00:00.000Z', createdAt: '2024-01-01T00:00:00.000Z', updatedAt: '2024-01-01T00:00:00.000Z' },
+        { id: 3, name: 'Fashion', slug: 'fashion', description: 'Deep understanding of luxury fashion communications', icon: '👗', order: 3, publishedAt: '2024-01-01T00:00:00.000Z', createdAt: '2024-01-01T00:00:00.000Z', updatedAt: '2024-01-01T00:00:00.000Z' },
+        { id: 4, name: 'Leather Goods', slug: 'leather-goods', description: 'Crafting narratives for premium leather goods', icon: '👜', order: 4, publishedAt: '2024-01-01T00:00:00.000Z', createdAt: '2024-01-01T00:00:00.000Z', updatedAt: '2024-01-01T00:00:00.000Z' },
+        { id: 5, name: 'Real Estate', slug: 'real-estate', description: 'Luxury property marketing and communications', icon: '🏛️', order: 5, publishedAt: '2024-01-01T00:00:00.000Z', createdAt: '2024-01-01T00:00:00.000Z', updatedAt: '2024-01-01T00:00:00.000Z' },
+        { id: 6, name: 'Finance', slug: 'finance', description: 'Private banking and wealth management communications', icon: '💰', order: 6, publishedAt: '2024-01-01T00:00:00.000Z', createdAt: '2024-01-01T00:00:00.000Z', updatedAt: '2024-01-01T00:00:00.000Z' },
+        { id: 7, name: 'Hospitality', slug: 'hospitality', description: 'Five-star hotel and resort marketing', icon: '🏨', order: 7, publishedAt: '2024-01-01T00:00:00.000Z', createdAt: '2024-01-01T00:00:00.000Z', updatedAt: '2024-01-01T00:00:00.000Z' },
+        { id: 8, name: 'Art', slug: 'art', description: 'Gallery, auction house, and fine art communications', icon: '🎨', order: 8, publishedAt: '2024-01-01T00:00:00.000Z', createdAt: '2024-01-01T00:00:00.000Z', updatedAt: '2024-01-01T00:00:00.000Z' },
+        { id: 9, name: 'Design', slug: 'design', description: 'Luxury interior design and furniture brand communications', icon: '🪑', order: 9, publishedAt: '2024-01-01T00:00:00.000Z', createdAt: '2024-01-01T00:00:00.000Z', updatedAt: '2024-01-01T00:00:00.000Z' },
+        { id: 10, name: 'Insurance', slug: 'insurance', description: 'Premium insurance and risk management communications', icon: '🛡️', order: 10, publishedAt: '2024-01-01T00:00:00.000Z', createdAt: '2024-01-01T00:00:00.000Z', updatedAt: '2024-01-01T00:00:00.000Z' },
       ];
     }
   } catch (err) {
@@ -140,14 +140,14 @@ export default async function ServicesPage() {
   return (
     <main className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-primary-blue via-accent-light-blue to-primary-blue py-16 sm:py-20 md:py-24 lg:py-32 overflow-hidden">
+      <section className="relative bg-gradient-to-br from-accent-mist-blue via-white to-accent-mist-blue py-16 sm:py-20 md:py-24 lg:py-32 overflow-hidden">
         <div className="absolute inset-0 bg-[url('/patterns/dots.svg')] opacity-10"></div>
         <div className="container mx-auto px-4 sm:px-6 md:px-8 max-w-7xl relative z-10">
           <div className="text-center max-w-4xl mx-auto">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4 sm:mb-6">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-neutral-gray-dark mb-4 sm:mb-6">
               Our Services
             </h1>
-            <p className="text-lg sm:text-xl md:text-2xl text-white/90 leading-relaxed">
+            <p className="text-lg sm:text-xl md:text-2xl text-neutral-gray leading-relaxed">
               Comprehensive luxury brand communications solutions tailored to elevate your brand
             </p>
           </div>
@@ -168,7 +168,7 @@ export default async function ServicesPage() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
-              {services.map((service, index) => (
+              {services.map((service) => (
                 <Link key={service.id} href={`/services/${service.slug}`}>
                   <Card 
                     className={`h-full p-6 sm:p-8 hover:shadow-2xl transition-all duration-300 cursor-pointer group border-2 border-transparent hover:border-primary-blue animate-fade-in-up`}
@@ -214,7 +214,7 @@ export default async function ServicesPage() {
             </div>
             
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6 md:gap-8">
-              {industries.map((industry, index) => (
+              {industries.map((industry) => (
                 <Card
                   key={industry.id}
                   className="text-center p-5 sm:p-6 md:p-8 hover:shadow-xl hover:scale-105 transition-all duration-300 bg-white group cursor-pointer animate-fade-in-up"
@@ -252,7 +252,7 @@ export default async function ServicesPage() {
           </p>
           <Link 
             href="/contact"
-            className="inline-block bg-white text-primary-blue px-8 sm:px-10 py-3 sm:py-4 rounded-full font-semibold text-base sm:text-lg hover:bg-accent-mist transition-all duration-300 hover:scale-105 shadow-lg"
+            className="inline-block bg-white text-neutral-gray-dark px-8 sm:px-10 py-3 sm:py-4 rounded-full font-semibold text-base sm:text-lg hover:bg-accent-mist transition-all duration-300 hover:scale-105 shadow-lg"
           >
             Get in Touch
           </Link>

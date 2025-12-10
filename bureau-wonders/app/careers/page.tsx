@@ -52,10 +52,10 @@ export default async function CareersPage() {
       {/* Page Header */}
       <section className="bg-gradient-to-br from-primary-blue to-accent-light-blue py-12 sm:py-16 md:py-20 lg:py-24">
         <div className="container mx-auto px-4 sm:px-6 md:px-8 text-center">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-3 sm:mb-4">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-neutral-gray-dark mb-4 sm:mb-6">
             Join Our Team
           </h1>
-          <p className="text-base sm:text-lg md:text-xl text-white/90 max-w-2xl mx-auto">
+          <p className="text-lg sm:text-xl md:text-2xl text-neutral-gray leading-relaxed">
             Be part of a team that shapes the future of luxury brand communications
           </p>
         </div>
