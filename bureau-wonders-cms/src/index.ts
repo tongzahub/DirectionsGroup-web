@@ -28,6 +28,12 @@ export default {
     
     // Seed blog posts
     await seedBlogPosts(strapi);
+    
+    // Seed services
+    await seedServices(strapi);
+    
+    // Seed industries
+    await seedIndustries(strapi);
   },
 };
 
@@ -65,6 +71,14 @@ async function setupPublicPermissions(strapi: Core.Strapi) {
     // Job Listing content type
     { controller: 'job-listing', action: 'find' },
     { controller: 'job-listing', action: 'findOne' },
+    
+    // Service content type
+    { controller: 'service', action: 'find' },
+    { controller: 'service', action: 'findOne' },
+    
+    // Industry content type
+    { controller: 'industry', action: 'find' },
+    { controller: 'industry', action: 'findOne' },
     
     // Site Settings (single type)
     { controller: 'site-setting', action: 'find' },
@@ -715,4 +729,247 @@ Influencer marketing has transformed luxury brand communications.`,
   }
 
   console.log('✓ Blog Posts seeded successfully');
+}
+
+/**
+ * Seed services data
+ */
+async function seedServices(strapi: Core.Strapi) {
+  // Check if services already exist
+  const existingServices = await strapi.entityService.findMany('api::service.service', {
+    limit: 1,
+  });
+
+  if (existingServices && existingServices.length > 0) {
+    console.log('Services already seeded, skipping...');
+    return;
+  }
+
+  console.log('Seeding Services...');
+
+  const services = [
+    {
+      title: 'Communications & PR',
+      slug: 'communications-pr',
+      description: `# Strategic Communications & Public Relations
+
+We craft compelling narratives that resonate with luxury audiences and elevate your brand's presence in the market.
+
+## What We Offer
+
+### Media Strategy & Planning
+Comprehensive media strategies tailored to luxury brand positioning and target audience engagement. We analyze market trends, identify key opportunities, and develop strategic roadmaps that ensure your brand message reaches the right audience at the right time.
+
+### Press Release Writing & Distribution
+Professional press materials that capture attention and communicate your brand's unique value proposition. Our experienced writers understand the nuances of luxury communications and craft messages that resonate with high-end media outlets and discerning readers.
+
+### Media Relations & Outreach
+Building and maintaining relationships with key media contacts in luxury, fashion, and lifestyle sectors. We have established connections with top-tier publications, influential journalists, and industry tastemakers who can amplify your brand story.
+
+### Crisis Communications
+Protecting your brand reputation with strategic crisis management and rapid response protocols. In the luxury sector, reputation is everything. We help you prepare for potential challenges and respond swiftly and effectively when issues arise.
+
+### Brand Positioning
+Defining and communicating your brand's unique position in the luxury market landscape. We help you articulate what makes your brand special and ensure that positioning is consistently communicated across all touchpoints.
+
+### Thought Leadership
+Establishing your brand and leadership team as industry authorities through strategic content placement, speaking opportunities, and expert commentary in leading publications.`,
+      icon: '📢',
+      order: 1,
+      seoTitle: 'Communications & PR Services - Luxury Brand Communications',
+      metaDescription: 'Strategic communications and PR services for luxury brands including media relations, press releases, and brand positioning.',
+      publishedAt: new Date().toISOString(),
+    },
+    {
+      title: 'Experiences & Events',
+      slug: 'experiences-events',
+      description: `# Unforgettable Experiences & Events
+
+We create immersive brand experiences and flawlessly executed events that leave lasting impressions on your most important audiences.
+
+## Event Services
+
+### Product Launches
+Spectacular launch events that generate buzz and create memorable first impressions for new products. From intimate gatherings to large-scale productions, we orchestrate every detail to ensure your product debut makes a lasting impact.
+
+### Brand Activations
+Interactive experiences that bring your brand story to life and create emotional connections with audiences. We design activations that engage all senses and create shareable moments that extend your brand reach far beyond the event itself.
+
+### VIP Experiences
+Exclusive, personalized experiences for your most valued clients and stakeholders. We understand that luxury is personal, and we create bespoke experiences that make your VIP guests feel truly special.
+
+### Trade Shows & Exhibitions
+Strategic presence at industry events with compelling booth design and engagement strategies. We help you stand out in crowded exhibition halls and create meaningful connections with potential clients and partners.
+
+### Private Events
+Intimate gatherings that strengthen relationships and showcase your brand's hospitality. From private dinners to exclusive previews, we create environments where meaningful conversations and lasting relationships flourish.
+
+### Fashion Shows & Runway Events
+Spectacular presentations that showcase your collections with style and sophistication. We handle everything from venue selection to choreography, ensuring your fashion show is a memorable celebration of your brand's creativity.
+
+### Anniversary Celebrations
+Milestone events that honor your brand's heritage while looking toward the future. We create celebrations that engage stakeholders, generate media coverage, and reinforce your brand's enduring value.`,
+      icon: '✨',
+      order: 2,
+      seoTitle: 'Experiences & Events - Luxury Brand Event Management',
+      metaDescription: 'Create unforgettable luxury brand experiences including product launches, VIP events, and brand activations.',
+      publishedAt: new Date().toISOString(),
+    },
+    {
+      title: 'Customer Relationship Management',
+      slug: 'customer-relationship-management',
+      description: `# Customer Relationship Management
+
+Build and nurture lasting relationships with your most valuable customers through personalized, data-driven communications.
+
+## CRM Services
+
+### Email Marketing Campaigns
+Sophisticated email strategies that engage, inform, and convert luxury consumers. We create beautifully designed, personalized email campaigns that respect your customers' time and deliver real value.
+
+### Social Media Strategy
+Curated social presence that reflects your brand's values and engages your target audience. We develop comprehensive social strategies that build community, drive engagement, and maintain the exclusivity that luxury brands require.
+
+### Content Creation
+Premium content that tells your brand story across all digital touchpoints. From photography and videography to copywriting and graphic design, we create content that captures the essence of luxury.
+
+### Influencer Partnerships
+Strategic collaborations with influencers who align with your brand values and reach your target audience. We identify authentic brand advocates and manage partnerships that feel genuine and drive real results.
+
+### Digital Analytics
+Data-driven insights to optimize your customer engagement and marketing ROI. We track, analyze, and report on key metrics that matter to your business, providing actionable recommendations for continuous improvement.
+
+### Loyalty Programs
+Exclusive programs that reward and retain your most valuable customers. We design loyalty initiatives that make customers feel appreciated while driving repeat purchases and brand advocacy.
+
+### Customer Journey Mapping
+Understanding and optimizing every touchpoint in your customer's experience. We map the entire customer journey and identify opportunities to enhance engagement and build stronger relationships.
+
+### Personalization Strategies
+Leveraging data and technology to deliver personalized experiences at scale. We help you use customer insights to create tailored communications that resonate with individual preferences and behaviors.`,
+      icon: '💎',
+      order: 3,
+      seoTitle: 'CRM Services - Luxury Customer Relationship Management',
+      metaDescription: 'Build lasting customer relationships with personalized CRM, email marketing, and digital engagement strategies.',
+      publishedAt: new Date().toISOString(),
+    },
+  ];
+
+  for (const service of services) {
+    await strapi.entityService.create('api::service.service', {
+      data: service,
+    });
+    console.log(`✓ Service created: ${service.title}`);
+  }
+
+  console.log('✓ Services seeded successfully');
+}
+
+/**
+ * Seed industries data
+ */
+async function seedIndustries(strapi: Core.Strapi) {
+  // Check if industries already exist
+  const existingIndustries = await strapi.entityService.findMany('api::industry.industry', {
+    limit: 1,
+  });
+
+  if (existingIndustries && existingIndustries.length > 0) {
+    console.log('Industries already seeded, skipping...');
+    return;
+  }
+
+  console.log('Seeding Industries...');
+
+  const industries = [
+    {
+      name: 'Jewelry',
+      slug: 'jewelry',
+      description: `Expertise in fine jewelry communications, from heritage brands to contemporary designers. We understand the artistry, craftsmanship, and emotional significance of fine jewelry.`,
+      icon: '💎',
+      order: 1,
+      publishedAt: new Date().toISOString(),
+    },
+    {
+      name: 'Watch',
+      slug: 'watch',
+      description: `Specialized knowledge in haute horlogerie and luxury timepiece marketing. We appreciate the technical mastery and heritage that define exceptional watchmaking.`,
+      icon: '⌚',
+      order: 2,
+      publishedAt: new Date().toISOString(),
+    },
+    {
+      name: 'Fashion',
+      slug: 'fashion',
+      description: `Deep understanding of luxury fashion communications and brand storytelling. We work with fashion houses to articulate their creative vision and connect with style-conscious consumers.`,
+      icon: '👗',
+      order: 3,
+      publishedAt: new Date().toISOString(),
+    },
+    {
+      name: 'Leather Goods',
+      slug: 'leather-goods',
+      description: `Crafting narratives for premium leather goods and accessories brands. We highlight the quality, craftsmanship, and timeless appeal of luxury leather products.`,
+      icon: '👜',
+      order: 4,
+      publishedAt: new Date().toISOString(),
+    },
+    {
+      name: 'Real Estate',
+      slug: 'real-estate',
+      description: `Luxury property marketing and high-end real estate communications. We help developers and brokers showcase exceptional properties to discerning buyers.`,
+      icon: '🏛️',
+      order: 5,
+      publishedAt: new Date().toISOString(),
+    },
+    {
+      name: 'Finance',
+      slug: 'finance',
+      description: `Private banking and wealth management communications expertise. We help financial institutions communicate with high-net-worth individuals with sophistication and discretion.`,
+      icon: '💰',
+      order: 6,
+      publishedAt: new Date().toISOString(),
+    },
+    {
+      name: 'Hospitality',
+      slug: 'hospitality',
+      description: `Five-star hotel and resort marketing and guest experience communications. We help luxury hospitality brands create compelling narratives that attract discerning travelers.`,
+      icon: '🏨',
+      order: 7,
+      publishedAt: new Date().toISOString(),
+    },
+    {
+      name: 'Art',
+      slug: 'art',
+      description: `Gallery, auction house, and fine art communications. We work with art institutions to engage collectors and art enthusiasts with compelling storytelling.`,
+      icon: '🎨',
+      order: 8,
+      publishedAt: new Date().toISOString(),
+    },
+    {
+      name: 'Design',
+      slug: 'design',
+      description: `Luxury interior design and high-end furniture brand communications. We help design brands articulate their aesthetic vision and connect with design-conscious consumers.`,
+      icon: '🪑',
+      order: 9,
+      publishedAt: new Date().toISOString(),
+    },
+    {
+      name: 'Insurance',
+      slug: 'insurance',
+      description: `Premium insurance and risk management communications. We help insurance providers communicate complex products to high-net-worth individuals with clarity and confidence.`,
+      icon: '🛡️',
+      order: 10,
+      publishedAt: new Date().toISOString(),
+    },
+  ];
+
+  for (const industry of industries) {
+    await strapi.entityService.create('api::industry.industry', {
+      data: industry,
+    });
+    console.log(`✓ Industry created: ${industry.name}`);
+  }
+
+  console.log('✓ Industries seeded successfully');
 }
