@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { strapiClient } from '@/lib/strapi-client';
 import { generateStaticPageMetadata } from '@/lib/metadata';
+import { Service, Industry, Page } from '@/types';
 import Card from '@/components/ui/Card';
 
 // Enable ISR with 300s revalidation
@@ -28,9 +29,9 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function ServicesPage() {
-  let pageContent = null;
-  let services = [];
-  let industries = [];
+  let pageContent: Page | null = null;
+  let services: Service[] = [];
+  let industries: Industry[] = [];
   let error: string | null = null;
 
   try {
@@ -93,10 +94,7 @@ export default async function ServicesPage() {
               {services.map((service, index) => (
                 <Link key={service.id} href={`/services/${service.slug}`}>
                   <Card 
-                    className="h-full p-6 sm:p-8 hover:shadow-2xl transition-all duration-300 cursor-pointer group border-2 border-transparent hover:border-primary-blue"
-                    style={{
-                      animation: `fadeInUp 0.6s ease-out ${index * 0.1}s both`
-                    }}
+                    className={`h-full p-6 sm:p-8 hover:shadow-2xl transition-all duration-300 cursor-pointer group border-2 border-transparent hover:border-primary-blue animate-fade-in-up`}
                   >
                     {service.icon && (
                       <div className="text-5xl sm:text-6xl mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300">
@@ -142,10 +140,7 @@ export default async function ServicesPage() {
               {industries.map((industry, index) => (
                 <Card
                   key={industry.id}
-                  className="text-center p-5 sm:p-6 md:p-8 hover:shadow-xl hover:scale-105 transition-all duration-300 bg-white group cursor-pointer"
-                  style={{
-                    animation: `fadeInUp 0.6s ease-out ${index * 0.05}s both`
-                  }}
+                  className="text-center p-5 sm:p-6 md:p-8 hover:shadow-xl hover:scale-105 transition-all duration-300 bg-white group cursor-pointer animate-fade-in-up"
                 >
                   {industry.icon && (
                     <div className="text-4xl sm:text-5xl mb-3 sm:mb-4 group-hover:scale-110 transition-transform duration-300">
@@ -187,18 +182,6 @@ export default async function ServicesPage() {
         </div>
       </section>
 
-      <style jsx>{`
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-      `}</style>
     </main>
   );
 }
