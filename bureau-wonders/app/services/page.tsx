@@ -35,11 +35,88 @@ export default async function ServicesPage() {
   let error: string | null = null;
 
   try {
-    [pageContent, services, industries] = await Promise.all([
-      strapiClient.getPage('services'),
-      strapiClient.getServices(),
-      strapiClient.getIndustries(),
-    ]);
+    // Try to fetch from Strapi, but fall back to mock data if not available
+    try {
+      pageContent = await strapiClient.getPage('services');
+    } catch (pageErr) {
+      console.log('Using fallback page content');
+      pageContent = {
+        id: 1,
+        slug: 'services',
+        title: 'Our Services',
+        seoTitle: 'Services - The Bureau of Wonders',
+        metaDescription: 'Discover our luxury brand communications services: Communications & PR, Experiences & Events, and Customer Relationship Management.',
+        content: 'Our comprehensive services for luxury brands',
+        publishedAt: new Date().toISOString(),
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+      };
+    }
+
+    try {
+      services = await strapiClient.getServices();
+    } catch (servicesErr) {
+      console.log('Using fallback services data');
+      services = [
+        {
+          id: 1,
+          title: 'Communications & PR',
+          slug: 'communications-pr',
+          description: 'Strategic communications and public relations services for luxury brands including media relations, press releases, and brand positioning.',
+          icon: '📢',
+          order: 1,
+          seoTitle: 'Communications & PR Services',
+          metaDescription: 'Strategic communications and PR services for luxury brands.',
+          publishedAt: new Date().toISOString(),
+          createdAt: new Date().toISOString(),
+          updatedAt: new Date().toISOString(),
+        },
+        {
+          id: 2,
+          title: 'Experiences & Events',
+          slug: 'experiences-events',
+          description: 'Create unforgettable luxury brand experiences including product launches, VIP events, and brand activations.',
+          icon: '✨',
+          order: 2,
+          seoTitle: 'Experiences & Events Services',
+          metaDescription: 'Create unforgettable luxury brand experiences.',
+          publishedAt: new Date().toISOString(),
+          createdAt: new Date().toISOString(),
+          updatedAt: new Date().toISOString(),
+        },
+        {
+          id: 3,
+          title: 'Customer Relationship Management',
+          slug: 'customer-relationship-management',
+          description: 'Build lasting customer relationships with personalized CRM, email marketing, and digital engagement strategies.',
+          icon: '💎',
+          order: 3,
+          seoTitle: 'CRM Services',
+          metaDescription: 'Build lasting customer relationships with personalized CRM.',
+          publishedAt: new Date().toISOString(),
+          createdAt: new Date().toISOString(),
+          updatedAt: new Date().toISOString(),
+        },
+      ];
+    }
+
+    try {
+      industries = await strapiClient.getIndustries();
+    } catch (industriesErr) {
+      console.log('Using fallback industries data');
+      industries = [
+        { id: 1, name: 'Jewelry', slug: 'jewelry', description: 'Expertise in fine jewelry communications', icon: '💎', order: 1, publishedAt: new Date().toISOString(), createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() },
+        { id: 2, name: 'Watch', slug: 'watch', description: 'Specialized knowledge in haute horlogerie', icon: '⌚', order: 2, publishedAt: new Date().toISOString(), createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() },
+        { id: 3, name: 'Fashion', slug: 'fashion', description: 'Deep understanding of luxury fashion communications', icon: '👗', order: 3, publishedAt: new Date().toISOString(), createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() },
+        { id: 4, name: 'Leather Goods', slug: 'leather-goods', description: 'Crafting narratives for premium leather goods', icon: '👜', order: 4, publishedAt: new Date().toISOString(), createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() },
+        { id: 5, name: 'Real Estate', slug: 'real-estate', description: 'Luxury property marketing and communications', icon: '🏛️', order: 5, publishedAt: new Date().toISOString(), createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() },
+        { id: 6, name: 'Finance', slug: 'finance', description: 'Private banking and wealth management communications', icon: '💰', order: 6, publishedAt: new Date().toISOString(), createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() },
+        { id: 7, name: 'Hospitality', slug: 'hospitality', description: 'Five-star hotel and resort marketing', icon: '🏨', order: 7, publishedAt: new Date().toISOString(), createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() },
+        { id: 8, name: 'Art', slug: 'art', description: 'Gallery, auction house, and fine art communications', icon: '🎨', order: 8, publishedAt: new Date().toISOString(), createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() },
+        { id: 9, name: 'Design', slug: 'design', description: 'Luxury interior design and furniture brand communications', icon: '🪑', order: 9, publishedAt: new Date().toISOString(), createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() },
+        { id: 10, name: 'Insurance', slug: 'insurance', description: 'Premium insurance and risk management communications', icon: '🛡️', order: 10, publishedAt: new Date().toISOString(), createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() },
+      ];
+    }
   } catch (err) {
     console.error('Error fetching Services page:', err);
     error = 'Unable to load content. Please try again later.';
