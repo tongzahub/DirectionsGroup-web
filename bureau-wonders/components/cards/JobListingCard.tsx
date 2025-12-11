@@ -88,7 +88,7 @@ const JobListingCard: React.FC<JobListingCardProps> = ({ job }) => {
       {/* Apply Button */}
       <Button
         variant="primary"
-        size="medium"
+        size="md"
         onClick={() => {
           // This will be handled by the parent component or page
           // For now, we can use a simple scroll to contact form or open email

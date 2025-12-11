@@ -2,18 +2,18 @@
 
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { BlogPost } from '@/types';
+import StrapiImage from '@/components/ui/StrapiImage';
 
 export interface BlogPostCardProps {
   post: BlogPost;
 }
 
 const CATEGORY_COLORS = {
-  'News': 'bg-primary-blue text-white',
-  'Case Study': 'bg-primary-darker text-white',
-  'Thought Leadership': 'bg-accent-mist text-primary-darker',
+  'News': 'bg-primary-500 text-white',
+  'Case Study': 'bg-primary-800 text-white',
+  'Thought Leadership': 'bg-primary-200 text-primary-800',
 };
 
 const BlogPostCard: React.FC<BlogPostCardProps> = ({ post }) => {
@@ -34,18 +34,16 @@ const BlogPostCard: React.FC<BlogPostCardProps> = ({ post }) => {
         transition={{ duration: 0.2, ease: 'easeOut' }}
       >
         {/* Thumbnail Image */}
-        {post.featuredImage && (
-          <div className="relative w-full h-44 sm:h-48 md:h-52 overflow-hidden">
-            <Image
-              src={post.featuredImage.url}
-              alt={post.featuredImage.alternativeText || post.title}
-              fill
-              className="object-cover"
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-              loading="lazy"
-            />
-          </div>
-        )}
+        <div className="relative w-full h-44 sm:h-48 md:h-52 overflow-hidden">
+          <StrapiImage
+            src={post.featuredImage?.url}
+            alt={post.featuredImage?.alternativeText || post.title}
+            fill
+            className="object-cover"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            loading="lazy"
+          />
+        </div>
 
         <div className="p-4 sm:p-5 md:p-6">
           {/* Category Badge */}
@@ -60,17 +58,17 @@ const BlogPostCard: React.FC<BlogPostCardProps> = ({ post }) => {
           </div>
 
           {/* Title */}
-          <h3 className="text-lg sm:text-xl font-semibold text-neutral-gray-dark mb-2 line-clamp-2">
+          <h3 className="text-lg sm:text-xl font-semibold text-neutral-800 mb-2 line-clamp-2">
             {post.title}
           </h3>
 
           {/* Excerpt */}
-          <p className="text-sm sm:text-base text-neutral-gray leading-relaxed mb-3 sm:mb-4 line-clamp-3">
+          <p className="text-sm sm:text-base text-neutral-600 leading-relaxed mb-3 sm:mb-4 line-clamp-3">
             {post.excerpt}
           </p>
 
           {/* Date */}
-          <p className="text-xs sm:text-sm text-neutral-gray">
+          <p className="text-xs sm:text-sm text-neutral-500">
             {formattedDate}
           </p>
         </div>

@@ -30,16 +30,26 @@ export default async function ContactPage() {
   return (
     <main className="min-h-screen">
       {/* Page Header */}
-      <section className="bg-gradient-to-br from-primary-blue to-accent-light-blue py-12 sm:py-16 md:py-20 lg:py-24">
-        <div className="container mx-auto px-4 sm:px-6 md:px-8 text-center">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-neutral-gray-dark mb-4 sm:mb-6">
-            Get in Touch
-          </h1>
-          <p className="text-lg sm:text-xl md:text-2xl text-neutral-gray leading-relaxed">
-            We'd love to hear about your project and discuss how we can help
-          </p>
+      <div className="relative py-12 sm:py-16 md:py-20 lg:py-24 bg-gradient-to-br from-neutral-900 via-neutral-800 to-primary-900 overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0 bg-gradient-to-r from-accent-gold/20 to-accent-copper/20"></div>
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-accent-gold/5 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-1/3 right-1/3 w-64 h-64 bg-accent-copper/5 rounded-full blur-2xl"></div>
         </div>
-      </section>
+        
+        {/* Content */}
+        <div className="relative z-10">
+          <div className="container mx-auto px-4 sm:px-6 md:px-8 text-center">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4 sm:mb-6 text-shadow-lg">
+              Get in Touch
+            </h1>
+            <p className="text-lg sm:text-xl md:text-2xl text-neutral-100 leading-relaxed text-shadow-md">
+              We'd love to hear about your project and discuss how we can help
+            </p>
+          </div>
+        </div>
+      </div>
 
       {/* Contact Content */}
       <section className="py-8 sm:py-12 md:py-16 lg:py-20 bg-white">
@@ -54,7 +64,7 @@ export default async function ContactPage() {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12">
                 {/* Contact Form */}
                 <div className="order-2 lg:order-1">
-                  <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-neutral-gray-dark mb-4 sm:mb-6">
+                  <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-neutral-800 mb-4 sm:mb-6">
                     Send us a message
                   </h2>
                   <ContactForm />
@@ -62,7 +72,7 @@ export default async function ContactPage() {
 
                 {/* Contact Information */}
                 <div className="order-1 lg:order-2">
-                  <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-neutral-gray-dark mb-4 sm:mb-6">
+                  <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-neutral-800 mb-4 sm:mb-6">
                     Contact Information
                   </h2>
 
@@ -71,9 +81,9 @@ export default async function ContactPage() {
                       {/* Office Address */}
                       {siteSettings.officeAddress && (
                         <div className="flex items-start gap-3 sm:gap-4">
-                          <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-primary-blue/10 flex items-center justify-center">
+                          <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-primary-500/10 flex items-center justify-center">
                             <svg
-                              className="w-5 h-5 sm:w-6 sm:h-6 text-primary-blue"
+                              className="w-5 h-5 sm:w-6 sm:h-6 text-primary-500"
                               fill="none"
                               stroke="currentColor"
                               viewBox="0 0 24 24"
@@ -94,10 +104,10 @@ export default async function ContactPage() {
                             </svg>
                           </div>
                           <div>
-                            <h3 className="text-base sm:text-lg font-semibold text-neutral-gray-dark mb-1">
+                            <h3 className="text-base sm:text-lg font-semibold text-neutral-800 mb-1">
                               Office Address
                             </h3>
-                            <p className="text-sm sm:text-base text-neutral-gray whitespace-pre-line">
+                            <p className="text-sm sm:text-base text-neutral-600 whitespace-pre-line">
                               {siteSettings.officeAddress}
                             </p>
                           </div>
@@ -107,9 +117,9 @@ export default async function ContactPage() {
                       {/* Email */}
                       {siteSettings.contactEmail && (
                         <div className="flex items-start gap-3 sm:gap-4">
-                          <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-primary-blue/10 flex items-center justify-center">
+                          <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-primary-500/10 flex items-center justify-center">
                             <svg
-                              className="w-5 h-5 sm:w-6 sm:h-6 text-primary-blue"
+                              className="w-5 h-5 sm:w-6 sm:h-6 text-primary-500"
                               fill="none"
                               stroke="currentColor"
                               viewBox="0 0 24 24"
@@ -124,12 +134,12 @@ export default async function ContactPage() {
                             </svg>
                           </div>
                           <div>
-                            <h3 className="text-base sm:text-lg font-semibold text-neutral-gray-dark mb-1">
+                            <h3 className="text-base sm:text-lg font-semibold text-neutral-800 mb-1">
                               Email
                             </h3>
                             <a
                               href={`mailto:${siteSettings.contactEmail}`}
-                              className="text-sm sm:text-base text-primary-blue hover:text-primary-darker transition-colors duration-200 break-words touch-manipulation inline-block min-h-[44px] flex items-center"
+                              className="text-sm sm:text-base text-primary-500 hover:text-primary-700 transition-colors duration-200 break-words touch-manipulation inline-block min-h-[44px] flex items-center"
                             >
                               {siteSettings.contactEmail}
                             </a>
@@ -140,9 +150,9 @@ export default async function ContactPage() {
                       {/* Phone */}
                       {siteSettings.contactPhone && (
                         <div className="flex items-start gap-3 sm:gap-4">
-                          <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-primary-blue/10 flex items-center justify-center">
+                          <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-primary-500/10 flex items-center justify-center">
                             <svg
-                              className="w-5 h-5 sm:w-6 sm:h-6 text-primary-blue"
+                              className="w-5 h-5 sm:w-6 sm:h-6 text-primary-500"
                               fill="none"
                               stroke="currentColor"
                               viewBox="0 0 24 24"
@@ -157,12 +167,12 @@ export default async function ContactPage() {
                             </svg>
                           </div>
                           <div>
-                            <h3 className="text-base sm:text-lg font-semibold text-neutral-gray-dark mb-1">
+                            <h3 className="text-base sm:text-lg font-semibold text-neutral-800 mb-1">
                               Phone
                             </h3>
                             <a
                               href={`tel:${siteSettings.contactPhone.replace(/\s/g, '')}`}
-                              className="text-sm sm:text-base text-primary-blue hover:text-primary-darker transition-colors duration-200 touch-manipulation inline-block min-h-[44px] flex items-center"
+                              className="text-sm sm:text-base text-primary-500 hover:text-primary-700 transition-colors duration-200 touch-manipulation inline-block min-h-[44px] flex items-center"
                             >
                               {siteSettings.contactPhone}
                             </a>
@@ -172,8 +182,8 @@ export default async function ContactPage() {
 
                       {/* Social Links */}
                       {siteSettings.socialLinks && siteSettings.socialLinks.length > 0 && (
-                        <div className="pt-4 border-t border-neutral-border">
-                          <h3 className="text-base sm:text-lg font-semibold text-neutral-gray-dark mb-3 sm:mb-4">
+                        <div className="pt-4 border-t border-neutral-200">
+                          <h3 className="text-base sm:text-lg font-semibold text-neutral-800 mb-3 sm:mb-4">
                             Follow Us
                           </h3>
                           <div className="flex flex-wrap gap-3">
@@ -183,7 +193,7 @@ export default async function ContactPage() {
                                 href={link.url}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-lg bg-primary-blue/10 hover:bg-primary-blue text-primary-blue hover:text-white flex items-center justify-center transition-all duration-200 touch-manipulation"
+                                className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-lg bg-primary-500/10 hover:bg-primary-500 text-primary-500 hover:text-white flex items-center justify-center transition-all duration-200 touch-manipulation"
                                 aria-label={link.platform}
                               >
                                 <span className="text-sm font-semibold">
@@ -196,7 +206,7 @@ export default async function ContactPage() {
                       )}
                     </div>
                   ) : (
-                    <p className="text-neutral-gray">Loading contact information...</p>
+                    <p className="text-neutral-600">Loading contact information...</p>
                   )}
                 </div>
               </div>

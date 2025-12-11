@@ -4,6 +4,9 @@ import { strapiClient } from '@/lib/strapi-client';
 import { generateStaticPageMetadata } from '@/lib/metadata';
 import { Service, Industry, Page } from '@/types';
 import Card from '@/components/ui/Card';
+import { ParallaxServiceShowcase, ParallaxHero } from '@/components/animations';
+import { serviceShowcasePresets } from '@/components/animations/ParallaxServiceShowcase';
+import { cn } from '@/lib/utils';
 
 // Enable ISR with 300s revalidation
 export const revalidate = 300;
@@ -126,7 +129,7 @@ export default async function ServicesPage() {
     return (
       <main className="min-h-screen">
         <div className="container mx-auto px-4 py-16 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-neutral-gray-dark mb-4">
+          <h1 className="text-4xl md:text-5xl font-bold text-neutral-800 mb-4">
             Our Services
           </h1>
           <p className="text-error text-lg">
@@ -139,76 +142,97 @@ export default async function ServicesPage() {
 
   return (
     <main className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-accent-mist-blue via-white to-accent-mist-blue py-16 sm:py-20 md:py-24 lg:py-32 overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/patterns/dots.svg')] opacity-10"></div>
-        <div className="container mx-auto px-4 sm:px-6 md:px-8 max-w-7xl relative z-10">
-          <div className="text-center max-w-4xl mx-auto">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-neutral-gray-dark mb-4 sm:mb-6">
-              Our Services
-            </h1>
-            <p className="text-lg sm:text-xl md:text-2xl text-neutral-gray leading-relaxed">
-              Comprehensive luxury brand communications solutions tailored to elevate your brand
-            </p>
-          </div>
+      {/* Hero Section with Parallax */}
+      <ParallaxHero
+        height="h-96 md:h-[500px] lg:h-[600px]"
+        overlayGradient="from-primary-200/80 via-white/60 to-primary-200/80"
+        intensity={0.4}
+        enableMultiLayer={false}
+        decorativeElements={true}
+      >
+        <div className="text-center text-neutral-800">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 sm:mb-6 drop-shadow-sm">
+            Our Services
+          </h1>
+          <p className="text-lg sm:text-xl md:text-2xl leading-relaxed max-w-4xl mx-auto drop-shadow-sm">
+            Comprehensive luxury brand communications solutions tailored to elevate your brand
+          </p>
         </div>
-      </section>
+      </ParallaxHero>
 
-      {/* Services Grid */}
+      {/* Services Grid with Parallax */}
       {services.length > 0 && (
-        <section className="py-16 sm:py-20 md:py-24 lg:py-28 bg-white">
+        <ParallaxServiceShowcase
+          className="py-16 sm:py-20 md:py-24 lg:py-28 bg-white"
+          backgroundElements={serviceShowcasePresets?.communications?.backgroundElements as any || []}
+          intensity={0.3}
+          enableInteraction={true}
+        >
           <div className="container mx-auto px-4 sm:px-6 md:px-8 max-w-7xl">
             <div className="text-center mb-12 sm:mb-16">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-neutral-gray-dark mb-4">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-neutral-800 mb-4">
                 What We Offer
               </h2>
-              <p className="text-lg sm:text-xl text-neutral-gray max-w-3xl mx-auto">
+              <p className="text-lg sm:text-xl text-neutral-600 max-w-3xl mx-auto">
                 Strategic services designed to amplify your brand's presence in the luxury market
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
-              {services.map((service) => (
-                <Link key={service.id} href={`/services/${service.slug}`}>
-                  <Card 
-                    className={`h-full p-6 sm:p-8 hover:shadow-2xl transition-all duration-300 cursor-pointer group border-2 border-transparent hover:border-primary-blue animate-fade-in-up`}
-                  >
-                    {service.icon && (
-                      <div className="text-5xl sm:text-6xl mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300">
-                        {service.icon}
+              {services.map((service, index) => {
+                // Use different presets for different services
+                const presetKey = index === 0 ? 'communications' : index === 1 ? 'events' : 'crm';
+                
+                return (
+                  <Link key={service.id} href={`/services/${service.slug}`}>
+                    <Card 
+                      className={`h-full p-6 sm:p-8 hover:shadow-2xl transition-all duration-300 cursor-pointer group border-2 border-transparent hover:border-primary-500 animate-fade-in-up relative overflow-hidden`}
+                    >
+                      {/* Service-specific background elements */}
+                      <div className="absolute inset-0 opacity-5 pointer-events-none">
+                        <div className={cn(
+                          "absolute top-2 right-2 w-16 h-16 rounded-full blur-lg",
+                          index === 0 ? "bg-blue-200" : index === 1 ? "bg-yellow-200" : "bg-green-200"
+                        )} />
                       </div>
-                    )}
-                    <h3 className="text-xl sm:text-2xl font-bold text-neutral-gray-dark mb-3 sm:mb-4 group-hover:text-primary-blue transition-colors">
-                      {service.title}
-                    </h3>
-                    <div className="text-neutral-gray text-sm sm:text-base leading-relaxed line-clamp-4 mb-4">
-                      {typeof service.description === 'string' 
-                        ? service.description.replace(/[#*]/g, '').substring(0, 180) + '...'
-                        : 'Learn more about this service'}
-                    </div>
-                    <div className="mt-auto pt-4 text-primary-blue font-semibold group-hover:translate-x-2 transition-transform inline-flex items-center">
-                      Learn More 
-                      <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                      </svg>
-                    </div>
-                  </Card>
-                </Link>
-              ))}
+                      
+                      {service.icon && (
+                        <div className="text-5xl sm:text-6xl mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300 relative z-10">
+                          {service.icon}
+                        </div>
+                      )}
+                      <h3 className="text-xl sm:text-2xl font-bold text-neutral-800 mb-3 sm:mb-4 group-hover:text-primary-500 transition-colors relative z-10">
+                        {service.title}
+                      </h3>
+                      <div className="text-neutral-600 text-sm sm:text-base leading-relaxed line-clamp-4 mb-4 relative z-10">
+                        {typeof service.description === 'string' 
+                          ? service.description.replace(/[#*]/g, '').substring(0, 180) + '...'
+                          : 'Learn more about this service'}
+                      </div>
+                      <div className="mt-auto pt-4 text-primary-500 font-semibold group-hover:translate-x-2 transition-transform inline-flex items-center relative z-10">
+                        Learn More 
+                        <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                      </div>
+                    </Card>
+                  </Link>
+                );
+              })}
             </div>
           </div>
-        </section>
+        </ParallaxServiceShowcase>
       )}
 
       {/* Industries Section */}
       {industries.length > 0 && (
-        <section className="py-16 sm:py-20 md:py-24 lg:py-28 bg-gradient-to-b from-accent-mist-blue to-white">
+        <section className="py-16 sm:py-20 md:py-24 lg:py-28 bg-gradient-to-b from-primary-100 to-white">
           <div className="container mx-auto px-4 sm:px-6 md:px-8 max-w-7xl">
             <div className="text-center mb-12 sm:mb-16">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-neutral-gray-dark mb-4">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-neutral-800 mb-4">
                 Industries We Serve
               </h2>
-              <p className="text-lg sm:text-xl text-neutral-gray max-w-3xl mx-auto">
+              <p className="text-lg sm:text-xl text-neutral-600 max-w-3xl mx-auto">
                 Specialized expertise across the luxury landscape
               </p>
             </div>
@@ -224,11 +248,11 @@ export default async function ServicesPage() {
                       {industry.icon}
                     </div>
                   )}
-                  <h3 className="text-sm sm:text-base md:text-lg font-semibold text-neutral-gray-dark group-hover:text-primary-blue transition-colors">
+                  <h3 className="text-sm sm:text-base md:text-lg font-semibold text-neutral-800 group-hover:text-primary-500 transition-colors">
                     {industry.name}
                   </h3>
                   {industry.description && (
-                    <p className="text-xs sm:text-sm text-neutral-gray mt-2 line-clamp-2">
+                    <p className="text-xs sm:text-sm text-neutral-600 mt-2 line-clamp-2">
                       {typeof industry.description === 'string' 
                         ? industry.description.replace(/[#*]/g, '').substring(0, 60)
                         : ''}
@@ -242,7 +266,7 @@ export default async function ServicesPage() {
       )}
 
       {/* CTA Section */}
-      <section className="py-16 sm:py-20 md:py-24 bg-primary-blue text-white">
+      <section className="py-16 sm:py-20 md:py-24 bg-primary-800 text-white">
         <div className="container mx-auto px-4 sm:px-6 md:px-8 max-w-4xl text-center">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6">
             Ready to Elevate Your Brand?
@@ -252,7 +276,7 @@ export default async function ServicesPage() {
           </p>
           <Link 
             href="/contact"
-            className="inline-block bg-white text-neutral-gray-dark px-8 sm:px-10 py-3 sm:py-4 rounded-full font-semibold text-base sm:text-lg hover:bg-accent-mist transition-all duration-300 hover:scale-105 shadow-lg"
+            className="inline-block bg-accent-gold text-neutral-900 px-8 sm:px-10 py-3 sm:py-4 rounded-full font-semibold text-base sm:text-lg hover:bg-accent-gold-light transition-all duration-300 hover:scale-105 shadow-xl hover:shadow-2xl"
           >
             Get in Touch
           </Link>

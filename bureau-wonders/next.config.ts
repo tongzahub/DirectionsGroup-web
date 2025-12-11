@@ -3,12 +3,23 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   reactCompiler: true,
 
+  // Set turbopack root to silence warning
+  turbopack: {
+    root: __dirname,
+  },
+
   // Image optimization for Strapi media
   images: {
     remotePatterns: [
       {
         protocol: 'http',
         hostname: 'localhost',
+        port: '1337',
+        pathname: '/uploads/**',
+      },
+      {
+        protocol: 'http',
+        hostname: '127.0.0.1',
         port: '1337',
         pathname: '/uploads/**',
       },
@@ -23,6 +34,10 @@ const nextConfig: NextConfig = {
         pathname: '/uploads/**',
       },
     ],
+    // Additional configuration for development
+    dangerouslyAllowSVG: true,
+    contentDispositionType: 'attachment',
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
 
   // Security headers

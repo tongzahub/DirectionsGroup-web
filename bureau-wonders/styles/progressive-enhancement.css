@@ -1,0 +1,422 @@
+/**
+ * Progressive Enhancement Styles
+ * Styles for progressive loading, fallbacks, and performance optimizations
+ */
+
+/* Progressive Image Styles */
+.progressive-image-container {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.progressive-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: opacity 0.3s ease-out;
+}
+
+.progressive-image--loading {
+  opacity: 0;
+}
+
+.progressive-image--loaded {
+  opacity: 1;
+}
+
+.progressive-image--error {
+  opacity: 0.5;
+}
+
+.progressive-image__placeholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f5f5f5;
+  z-index: 1;
+}
+
+.progressive-image__blur {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(10px);
+  transform: scale(1.1);
+}
+
+.progressive-image__skeleton {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading-shimmer 2s infinite;
+}
+
+@keyframes loading-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.progressive-image__error {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f5f5f5;
+  color: #666;
+  z-index: 2;
+}
+
+.progressive-image__error-icon {
+  width: 48px;
+  height: 48px;
+  opacity: 0.5;
+}
+
+/* Progressive Background Styles */
+.progressive-background {
+  position: relative;
+  transition: background-image 0.3s ease-out;
+}
+
+.progressive-background__placeholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+  z-index: -1;
+}
+
+.progressive-background--loaded .progressive-background__placeholder {
+  opacity: 0;
+  transition: opacity 0.3s ease-out;
+}
+
+.progressive-background--error {
+  background: #f5f5f5;
+}
+
+/* Fade-in animation for loaded images */
+.fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .progressive-image,
+  .progressive-background,
+  .fade-in {
+    transition: none !important;
+    animation: none !important;
+  }
+  
+  .progressive-image__skeleton {
+    background: #f0f0f0;
+    animation: none;
+  }
+  
+  .progressive-image--loading {
+    opacity: 1;
+  }
+}
+
+/* Critical CSS loading indicator */
+.critical-css-loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--color-accent-gold, #d4af37), transparent);
+  background-size: 200% 100%;
+  animation: loading-bar 2s infinite;
+  z-index: 9999;
+}
+
+@keyframes loading-bar {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Asset loading states */
+.asset-loading {
+  position: relative;
+}
+
+.asset-loading::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.asset-loading::after {
+  content: '';
+  width: 32px;
+  height: 32px;
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid var(--color-accent-gold, #d4af37);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Progressive enhancement feature detection */
+.no-js .js-only {
+  display: none !important;
+}
+
+.js .no-js-only {
+  display: none !important;
+}
+
+.no-webp .webp-only {
+  display: none !important;
+}
+
+.webp .no-webp-only {
+  display: none !important;
+}
+
+.no-intersection-observer .lazy-only {
+  display: none !important;
+}
+
+/* Fallback styles for unsupported features */
+.no-css-grid .grid-layout {
+  display: block;
+}
+
+.no-css-grid .grid-item {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.no-css-custom-properties {
+  /* Fallback colors */
+  --color-primary-50: #faf9f7;
+  --color-primary-100: #f0ede6;
+  --color-primary-500: #8b7355;
+  --color-primary-900: #2d251a;
+  --color-accent-gold: #d4af37;
+}
+
+/* Network-aware loading */
+.slow-connection .high-bandwidth-only {
+  display: none !important;
+}
+
+.fast-connection .low-bandwidth-only {
+  display: none !important;
+}
+
+/* Battery-aware styles */
+.low-battery .battery-intensive {
+  animation: none !important;
+  transition: none !important;
+  transform: none !important;
+}
+
+/* Print optimizations */
+@media print {
+  .progressive-image__placeholder,
+  .progressive-image__skeleton,
+  .asset-loading::before,
+  .asset-loading::after,
+  .critical-css-loading {
+    display: none !important;
+  }
+  
+  .progressive-image {
+    opacity: 1 !important;
+  }
+}
+
+/* High contrast mode optimizations */
+@media (prefers-contrast: high) {
+  .progressive-image__placeholder,
+  .progressive-background__placeholder {
+    background: #ffffff;
+    border: 2px solid #000000;
+  }
+  
+  .progressive-image__skeleton {
+    background: repeating-linear-gradient(
+      45deg,
+      #ffffff,
+      #ffffff 10px,
+      #000000 10px,
+      #000000 20px
+    );
+    animation: none;
+  }
+  
+  .progressive-image__error {
+    background: #ffffff;
+    color: #000000;
+    border: 2px solid #000000;
+  }
+}
+
+/* Responsive image containers */
+.progressive-image-container--16-9 {
+  aspect-ratio: 16 / 9;
+}
+
+.progressive-image-container--4-3 {
+  aspect-ratio: 4 / 3;
+}
+
+.progressive-image-container--1-1 {
+  aspect-ratio: 1 / 1;
+}
+
+.progressive-image-container--3-2 {
+  aspect-ratio: 3 / 2;
+}
+
+/* Fallback for browsers without aspect-ratio support */
+@supports not (aspect-ratio: 1) {
+  .progressive-image-container--16-9 {
+    padding-bottom: 56.25%; /* 9/16 * 100% */
+  }
+  
+  .progressive-image-container--4-3 {
+    padding-bottom: 75%; /* 3/4 * 100% */
+  }
+  
+  .progressive-image-container--1-1 {
+    padding-bottom: 100%;
+  }
+  
+  .progressive-image-container--3-2 {
+    padding-bottom: 66.67%; /* 2/3 * 100% */
+  }
+  
+  .progressive-image-container--16-9 .progressive-image,
+  .progressive-image-container--4-3 .progressive-image,
+  .progressive-image-container--1-1 .progressive-image,
+  .progressive-image-container--3-2 .progressive-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+/* Loading progress indicator */
+.loading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: rgba(0, 0, 0, 0.1);
+  z-index: 9999;
+}
+
+.loading-progress__bar {
+  height: 100%;
+  background: var(--color-accent-gold, #d4af37);
+  transition: width 0.3s ease-out;
+  width: 0%;
+}
+
+/* Intersection observer fallback */
+.no-intersection-observer [data-lazy] {
+  /* Load immediately if intersection observer is not supported */
+  opacity: 1;
+}
+
+/* Service worker update notification */
+.sw-update-notification {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  background: var(--color-primary-900, #2d251a);
+  color: var(--color-primary-50, #faf9f7);
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  transform: translateY(100px);
+  transition: transform 0.3s ease-out;
+}
+
+.sw-update-notification.show {
+  transform: translateY(0);
+}
+
+.sw-update-notification__actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.sw-update-notification__button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  background: var(--color-accent-gold, #d4af37);
+  color: var(--color-primary-900, #2d251a);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease-out;
+}
+
+.sw-update-notification__button:hover {
+  background: #c4a02a;
+}
+
+.sw-update-notification__button--secondary {
+  background: transparent;
+  color: var(--color-primary-50, #faf9f7);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.sw-update-notification__button--secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+}

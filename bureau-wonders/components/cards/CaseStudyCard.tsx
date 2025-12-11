@@ -2,9 +2,9 @@
 
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { CaseStudy } from '@/types';
+import StrapiImage from '@/components/ui/StrapiImage';
 
 export interface CaseStudyCardProps {
   caseStudy: CaseStudy;
@@ -37,18 +37,16 @@ const CaseStudyCard: React.FC<CaseStudyCardProps> = ({ caseStudy }) => {
         transition={{ duration: 0.2, ease: 'easeOut' }}
       >
         {/* Featured Image */}
-        {caseStudy.featuredImage && (
-          <div className="relative w-full h-48 sm:h-52 md:h-56 overflow-hidden">
-            <Image
-              src={caseStudy.featuredImage.url}
-              alt={caseStudy.featuredImage.alternativeText || caseStudy.title}
-              fill
-              className="object-cover"
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-              loading="lazy"
-            />
-          </div>
-        )}
+        <div className="relative w-full h-48 sm:h-52 md:h-56 overflow-hidden">
+          <StrapiImage
+            src={caseStudy.featuredImage?.url}
+            alt={caseStudy.featuredImage?.alternativeText || caseStudy.title}
+            fill
+            className="object-cover"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            loading="lazy"
+          />
+        </div>
 
         <div className="p-4 sm:p-5 md:p-6">
           {/* Client Name */}

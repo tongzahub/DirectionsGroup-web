@@ -15,6 +15,21 @@ import {
 import { STRAPI_URL, STRAPI_API_TOKEN, API_TIMEOUT } from './constants';
 
 /**
+ * Convert Strapi media URL to absolute URL
+ */
+export function getStrapiMediaUrl(url: string | null | undefined): string | null {
+  if (!url) return null;
+  
+  // If already absolute URL, return as is
+  if (url.startsWith('http://') || url.startsWith('https://')) {
+    return url;
+  }
+  
+  // Convert relative URL to absolute
+  return `${STRAPI_URL}${url}`;
+}
+
+/**
  * Custom error class for Strapi API errors
  */
 export class StrapiClientError extends Error {

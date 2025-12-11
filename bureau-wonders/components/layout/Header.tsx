@@ -3,8 +3,12 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { motion, AnimatePresence } from 'framer-motion';
 import { NavigationItem } from '@/types';
 import { SITE_NAME } from '@/lib/constants';
+import { StickyNavigation } from '@/components/animations';
+import { MobileNavigation, MobileSearch } from '@/components/navigation';
+import { useDeviceType } from '@/lib/responsive';
 
 interface HeaderProps {
   navigation: NavigationItem[];
@@ -13,7 +17,9 @@ interface HeaderProps {
 export default function Header({ navigation }: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [hoveredItem, setHoveredItem] = useState<string | null>(null);
   const pathname = usePathname();
+  const deviceType = useDeviceType();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,84 +43,112 @@ export default function Header({ navigation }: HeaderProps) {
   };
 
   return (
-    <header
-      className={`sticky top-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? 'bg-neutral-white shadow-md'
-          : 'bg-neutral-white'
-      }`}
+    <StickyNavigation
+      hideOnScrollDown={true}
+      showOnScrollUp={true}
+      threshold={100}
+      backgroundBlur={true}
+      shadowOnScroll={true}
     >
+      <motion.div
+        className="bg-white/95"
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
+      >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-14 sm:h-16 lg:h-20">
-          {/* Logo/Brand */}
-          <Link
-            href="/"
-            className="text-lg sm:text-xl lg:text-2xl font-bold text-neutral-gray-dark hover:text-primary transition-colors duration-200 touch-manipulation"
+          {/* Enhanced Logo/Brand */}
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ duration: 0.2 }}
           >
-            {SITE_NAME}
-          </Link>
+            <Link
+              href="/"
+              className="text-lg sm:text-xl lg:text-2xl font-bold text-neutral-gray-dark hover:text-primary transition-all duration-300 touch-manipulation relative"
+            >
+              <span className="relative z-10">{SITE_NAME}</span>
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-primary-100 to-primary-200 rounded-lg opacity-0"
+                whileHover={{ opacity: 1 }}
+                transition={{ duration: 0.3 }}
+              />
+            </Link>
+          </motion.div>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-1 lg:space-x-2">
+          {/* Enhanced Desktop Navigation */}
+          <nav className="hidden md:flex items-center space-x-1 lg:space-x-2 relative">
             {navigation.map((item) => (
-              <Link
+              <motion.div
                 key={item.href}
-                href={item.href}
-                className={`px-3 lg:px-4 py-2 rounded-md text-sm lg:text-base font-medium transition-all duration-200 min-h-[44px] flex items-center ${
-                  isActive(item.href)
-                    ? 'text-primary-dark bg-primary-light'
-                    : 'text-neutral-gray hover:text-primary hover:bg-neutral-snow'
-                }`}
+                className="relative"
+                onHoverStart={() => setHoveredItem(item.href)}
+                onHoverEnd={() => setHoveredItem(null)}
               >
-                {item.label}
-              </Link>
+                <Link
+                  href={item.href}
+                  className={`relative px-3 lg:px-4 py-2 rounded-lg text-sm lg:text-base font-medium transition-all duration-300 min-h-[44px] flex items-center z-10 ${
+                    isActive(item.href)
+                      ? 'text-primary-dark'
+                      : 'text-neutral-gray hover:text-primary'
+                  }`}
+                >
+                  {item.label}
+                  
+                  {/* Active indicator */}
+                  {isActive(item.href) && (
+                    <motion.div
+                      className="absolute bottom-0 left-1/2 w-6 h-0.5 bg-gradient-to-r from-primary-500 to-primary-600 rounded-full"
+                      layoutId="activeIndicator"
+                      initial={{ x: '-50%' }}
+                      animate={{ x: '-50%' }}
+                      transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                    />
+                  )}
+                  
+                  {/* Hover background */}
+                  <AnimatePresence>
+                    {hoveredItem === item.href && !isActive(item.href) && (
+                      <motion.div
+                        className="absolute inset-0 bg-gradient-to-r from-primary-50 to-primary-100 rounded-lg"
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.8 }}
+                        transition={{ duration: 0.2 }}
+                      />
+                    )}
+                  </AnimatePresence>
+                </Link>
+              </motion.div>
             ))}
           </nav>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 rounded-md text-neutral-gray hover:text-primary hover:bg-neutral-snow transition-colors duration-200 min-w-[44px] min-h-[44px] flex items-center justify-center touch-manipulation"
-            aria-label="Toggle menu"
-            aria-expanded={isMobileMenuOpen}
-          >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              {isMobileMenuOpen ? (
-                <path d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path d="M4 6h16M4 12h16M4 18h16" />
-              )}
-            </svg>
-          </button>
+          {/* Mobile Navigation and Search */}
+          <div className="md:hidden flex items-center space-x-2">
+            {/* Mobile Search */}
+            <MobileSearch
+              placeholder="Search..."
+              className="flex-1 max-w-[200px]"
+            />
+            
+            {/* Enhanced Mobile Navigation */}
+            <MobileNavigation
+              navigation={navigation.map(item => ({
+                href: item.href,
+                label: item.label,
+                description: `Navigate to ${item.label}`,
+              }))}
+              siteName={SITE_NAME}
+              enableSearch={true}
+              enableGestures={true}
+            />
+          </div>
         </div>
 
-        {/* Mobile Navigation */}
-        {isMobileMenuOpen && (
-          <nav className="md:hidden py-3 sm:py-4 border-t border-neutral-gray-light animate-fade-in">
-            {navigation.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`block px-4 py-3 rounded-md text-base font-medium transition-all duration-200 min-h-[44px] flex items-center touch-manipulation ${
-                  isActive(item.href)
-                    ? 'text-primary-dark bg-primary-light'
-                    : 'text-neutral-gray hover:text-primary hover:bg-neutral-snow'
-                }`}
-              >
-                {item.label}
-              </Link>
-            ))}
-          </nav>
-        )}
+
       </div>
-    </header>
+      </motion.div>
+    </StickyNavigation>
   );
 }

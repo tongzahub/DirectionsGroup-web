@@ -3,6 +3,7 @@ import { strapiClient } from '@/lib/strapi-client';
 import { generatePageMetadata } from '@/lib/metadata';
 import { SITE_NAME } from '@/lib/constants';
 import HeroSection from '@/components/content/HeroSection';
+import { ParallaxHero } from '@/components/animations';
 import { SiteSettings } from '@/types';
 
 // Enable ISR with 60s revalidation
@@ -52,13 +53,34 @@ export default async function Home() {
         </div>
       ) : (
         <>
-          <HeroSection
-            title={settings?.siteName || SITE_NAME}
-            subtitle={introText}
-            ctaText="Explore Our Services"
-            ctaLink="/services"
-            useGradient={true}
-          />
+          <div className="relative min-h-screen bg-gradient-to-br from-neutral-900 via-neutral-800 to-primary-900 overflow-hidden">
+            {/* Background Pattern */}
+            <div className="absolute inset-0 opacity-10">
+              <div className="absolute inset-0 bg-gradient-to-r from-accent-gold/20 to-accent-copper/20"></div>
+              <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-accent-gold/5 rounded-full blur-3xl"></div>
+              <div className="absolute bottom-1/3 right-1/3 w-64 h-64 bg-accent-copper/5 rounded-full blur-2xl"></div>
+            </div>
+            
+            {/* Content */}
+            <div className="relative z-10 flex items-center justify-center min-h-screen">
+              <div className="container mx-auto px-4 sm:px-6 md:px-8 text-center">
+                <div className="text-white">
+                  <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-shadow-lg">
+                    {settings?.siteName || SITE_NAME}
+                  </h1>
+                  <p className="text-lg sm:text-xl md:text-2xl mb-8 max-w-3xl mx-auto leading-relaxed text-shadow-md text-neutral-100">
+                    {introText}
+                  </p>
+                  <a
+                    href="/services"
+                    className="inline-block bg-accent-gold text-neutral-900 px-8 py-4 rounded-full font-semibold text-lg hover:bg-accent-gold-light transition-all duration-300 hover:scale-105 shadow-xl hover:shadow-2xl"
+                  >
+                    Explore Our Services
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
         </>
       )}
     </main>

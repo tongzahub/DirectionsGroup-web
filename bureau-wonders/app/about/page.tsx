@@ -1,8 +1,10 @@
 import { Metadata } from 'next';
 import { strapiClient } from '@/lib/strapi-client';
+import { AboutSection } from '@/types';
 import { generateStaticPageMetadata } from '@/lib/metadata';
 import ContentSection from '@/components/content/ContentSection';
 import AboutSubmenu from '@/components/layout/AboutSubmenu';
+import { ScrollTriggeredReveal, StaggeredReveal, ParallaxHero } from '@/components/animations';
 
 // Enable ISR with 300s revalidation
 export const revalidate = 300;
@@ -29,7 +31,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function AboutPage() {
   let pageContent = null;
-  let sections = [];
+  let sections: AboutSection[] = [];
   let error: string | null = null;
 
   try {
@@ -57,27 +59,45 @@ export default async function AboutPage() {
 
   return (
     <main className="min-h-screen">
-      {/* Page Header */}
-      <section className="bg-white border-b border-neutral-gray-light py-16 md:py-20 lg:py-24">
-        <div className="container mx-auto px-4 md:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-neutral-gray-dark mb-4">
-            {pageContent.title}
-          </h1>
-          <p className="text-lg text-neutral-gray max-w-2xl mx-auto">
-            Discover who we are, what we believe, and how we create extraordinary experiences for luxury brands.
-          </p>
+      {/* Page Header with Parallax */}
+      <ParallaxHero
+        height="h-96 md:h-[500px]"
+        overlayGradient="from-white/95 via-accent-mist-blue/60 to-white/95"
+        intensity={0.3}
+        enableMultiLayer={false}
+        decorativeElements={true}
+      >
+        <div className="text-center text-neutral-gray-dark">
+          <ScrollTriggeredReveal direction="up" delay={200}>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 drop-shadow-sm">
+              {pageContent.title}
+            </h1>
+          </ScrollTriggeredReveal>
+          <ScrollTriggeredReveal direction="up" delay={400}>
+            <p className="text-lg max-w-2xl mx-auto leading-relaxed drop-shadow-sm">
+              Discover who we are, what we believe, and how we create extraordinary experiences for luxury brands.
+            </p>
+          </ScrollTriggeredReveal>
         </div>
-      </section>
+      </ParallaxHero>
 
       {/* Submenu Navigation */}
-      <AboutSubmenu sections={sections} />
+      <ScrollTriggeredReveal direction="fade" delay={100}>
+        <AboutSubmenu sections={sections} />
+      </ScrollTriggeredReveal>
 
-      {/* Main Content */}
-      <ContentSection
-        content={pageContent.content}
-        layout="single"
+      {/* Main Content with Staggered Reveals */}
+      <StaggeredReveal 
+        direction="up" 
+        staggerDelay={0.2}
         className="bg-white"
-      />
+      >
+        <ContentSection
+          content={pageContent.content}
+          layout="single"
+          className="bg-white"
+        />
+      </StaggeredReveal>
     </main>
   );
 }
