@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_brand_story_failure_scenarios",
+  "info": {
+    "displayName": "Failure Scenario",
+    "description": "Consequences of inaction or poor decisions"
+  },
+  "options": {},
+  "attributes": {
+    "scenario": {
+      "type": "string",
+      "required": true,
+      "maxLength": 150
+    },
+    "consequences": {
+      "type": "json",
+      "required": true
+    },
+    "realWorldExample": {
+      "type": "richtext",
+      "required": false
+    }
+  }
+}

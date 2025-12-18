@@ -63,7 +63,7 @@ const pages = [
   {
     title: 'Contact',
     slug: 'contact',
-    content: '# Get In Touch\n\nWe\'d love to hear from you. Whether you\'re interested in our services, have a question, or want to explore a partnership, our team is here to help.\n\n## Contact Information\n\n**Email:** hello@bureauofwonders.com  \n**Phone:** +1 (555) 123-4567\n\n**Office Address:**  \n123 Luxury Lane  \nNew York, NY 10001\n\n## Office Hours\n\nMonday - Friday: 9:00 AM - 6:00 PM EST  \nSaturday - Sunday: Closed\n\n## Send Us a Message\n\nFill out the form below and we\'ll get back to you within 24 hours.',
+    content: '# Get In Touch\n\nWe\'d love to hear from you. Whether you\'re interested in our services, have a question, or want to explore a partnership, our team is here to help.\n\n## Contact Information\n\n**Email:** hello@bureauofwonders.com  \n**Phone:** +1 (555) 123-4567\n\n**Office Address:**  \n989 Siam Piwat Tower 19th Floor Unit B2/1  \nRama 1 Road, Pathumwan  \nBangkok 10330, Thailand\n\n## Office Hours\n\nMonday - Friday: 9:00 AM - 6:00 PM EST  \nSaturday - Sunday: Closed\n\n## Send Us a Message\n\nFill out the form below and we\'ll get back to you within 24 hours.',
     seoTitle: 'Contact Us - The Bureau of Wonders',
     metaDescription: 'Get in touch with The Bureau of Wonders. Contact our luxury brand communications team for inquiries and consultations.',
     publishedAt: '2025-12-09T14:00:00.000Z',
@@ -71,10 +71,10 @@ const pages = [
 ];
 
 const siteSettings = {
-  siteName: 'The Bureau of Wonders',
+  siteName: 'The Bureau of Wonders Company Limited',
   contactEmail: 'hello@bureauofwonders.com',
   contactPhone: '+1 (555) 123-4567',
-  officeAddress: '123 Luxury Lane, New York, NY 10001',
+  officeAddress: '989 Siam Piwat Tower 19th Floor Unit B2/1 Rama 1 Road, Pathumwan, Bangkok 10330, Thailand',
   socialLinks: [
     { platform: 'Instagram', url: 'https://instagram.com/bureauofwonders' },
     { platform: 'LinkedIn', url: 'https://linkedin.com/company/bureauofwonders' },

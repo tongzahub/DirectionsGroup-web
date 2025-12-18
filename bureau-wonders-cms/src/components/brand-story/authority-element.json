@@ -1,0 +1,30 @@
+{
+  "collectionName": "components_brand_story_authority_elements",
+  "info": {
+    "displayName": "Authority Element",
+    "description": "Credentials, experience, or recognition items"
+  },
+  "options": {},
+  "attributes": {
+    "type": {
+      "type": "enumeration",
+      "enum": ["credential", "experience", "recognition"],
+      "required": true
+    },
+    "title": {
+      "type": "string",
+      "required": true,
+      "maxLength": 100
+    },
+    "description": {
+      "type": "richtext",
+      "required": true
+    },
+    "visual": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    }
+  }
+}

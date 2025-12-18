@@ -163,4 +163,4 @@ NEXT_PUBLIC_SITE_URL=https://your-site.vercel.app
 
 ## License
 
-Private - The Bureau of Wonders
+Private - The Bureau of Wonders Company Limited

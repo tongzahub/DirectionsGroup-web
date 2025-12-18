@@ -1,11 +1,11 @@
 // API Configuration
 export const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337';
 export const STRAPI_API_TOKEN = process.env.STRAPI_API_TOKEN || '';
-export const API_TIMEOUT = 10000; // 10 seconds
+export const API_TIMEOUT = 30000; // 30 seconds
 
 // Site Configuration
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
-export const SITE_NAME = 'The Bureau of Wonders';
+export const SITE_NAME = 'The Bureau of Wonders Company Limited';
 
 // Revalidation times (in seconds)
 export const REVALIDATE = {

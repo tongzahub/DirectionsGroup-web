@@ -85,11 +85,11 @@ export interface JobListing {
   id: number;
   title: string;
   slug: string;
-  department?: string;
+  department: string;
   location: string;
   type: 'Full-time' | 'Part-time' | 'Contract';
   description: RichText;
-  requirements?: RichText;
+  requirements: RichText;
   publishedAt: string;
   createdAt: string;
   updatedAt: string;

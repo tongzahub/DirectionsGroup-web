@@ -519,6 +519,131 @@ export interface ApiBlogPostBlogPost extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiBrandStoryBrandStory extends Struct.SingleTypeSchema {
+  collectionName: 'brand_story';
+  info: {
+    description: 'StoryBrand framework-based brand narrative content';
+    displayName: 'Brand Story';
+    pluralName: 'brand-stories';
+    singularName: 'brand-story';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    authorityElements: Schema.Attribute.Component<
+      'brand-story.authority-element',
+      true
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    empathyStatement: Schema.Attribute.RichText & Schema.Attribute.Required;
+    failureScenarios: Schema.Attribute.Component<
+      'brand-story.failure-scenario',
+      true
+    >;
+    guideTitle: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 100;
+      }>;
+    heroBackgroundImage: Schema.Attribute.Media<'images'>;
+    heroCtaLink: Schema.Attribute.String;
+    heroCtaText: Schema.Attribute.String &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 30;
+      }> &
+      Schema.Attribute.DefaultTo<'Start Your Journey'>;
+    heroHeadline: Schema.Attribute.RichText & Schema.Attribute.Required;
+    heroSubheadline: Schema.Attribute.RichText & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::brand-story.brand-story'
+    > &
+      Schema.Attribute.Private;
+    metaDescription: Schema.Attribute.Text &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 160;
+      }>;
+    ogImage: Schema.Attribute.Media<'images'>;
+    opportunityCostStatement: Schema.Attribute.RichText;
+    overallImpactStatement: Schema.Attribute.RichText;
+    planIntroduction: Schema.Attribute.RichText & Schema.Attribute.Required;
+    planTitle: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 100;
+      }>;
+    primaryCtaButtonText: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 30;
+      }>;
+    primaryCtaDescription: Schema.Attribute.RichText &
+      Schema.Attribute.Required;
+    primaryCtaFormFields: Schema.Attribute.JSON;
+    primaryCtaHeadline: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 100;
+      }>;
+    problems: Schema.Attribute.Component<'brand-story.problem-item', true>;
+    problemTitle: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 100;
+      }>;
+    problemTransitionStatement: Schema.Attribute.RichText;
+    processSteps: Schema.Attribute.Component<'brand-story.process-step', true>;
+    publishedAt: Schema.Attribute.DateTime;
+    reassuranceStatement: Schema.Attribute.RichText;
+    secondaryCtaOptions: Schema.Attribute.Component<
+      'brand-story.cta-option',
+      true
+    >;
+    secondaryCtaTitle: Schema.Attribute.String &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 100;
+      }>;
+    seoTitle: Schema.Attribute.String &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 60;
+      }>;
+    slug: Schema.Attribute.UID<'title'> &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    stakesTitle: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 100;
+      }>;
+    successCaseStudies: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::case-study.case-study'
+    >;
+    successMetrics: Schema.Attribute.Component<'brand-story.metric', true>;
+    successTitle: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 100;
+      }>;
+    teamHighlights: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::team-member.team-member'
+    >;
+    testimonials: Schema.Attribute.Component<'brand-story.testimonial', true>;
+    title: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'Our Brand Story'>;
+    transitionToActionStatement: Schema.Attribute.RichText;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiCaseStudyCaseStudy extends Struct.CollectionTypeSchema {
   collectionName: 'case_studies';
   info: {
@@ -792,6 +917,49 @@ export interface ApiSiteSettingSiteSetting extends Struct.SingleTypeSchema {
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     values: Schema.Attribute.JSON & Schema.Attribute.DefaultTo<[]>;
+  };
+}
+
+export interface ApiTeamMemberTeamMember extends Struct.CollectionTypeSchema {
+  collectionName: 'team_members';
+  info: {
+    description: 'Team member profiles for brand story and about page';
+    displayName: 'Team Member';
+    pluralName: 'team-members';
+    singularName: 'team-member';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    bio: Schema.Attribute.RichText;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    expertise: Schema.Attribute.JSON;
+    featured: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    image: Schema.Attribute.Media<'images'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::team-member.team-member'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 100;
+      }>;
+    order: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
+    publishedAt: Schema.Attribute.DateTime;
+    title: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 100;
+      }>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
   };
 }
 
@@ -1307,6 +1475,7 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::about-section.about-section': ApiAboutSectionAboutSection;
       'api::blog-post.blog-post': ApiBlogPostBlogPost;
+      'api::brand-story.brand-story': ApiBrandStoryBrandStory;
       'api::case-study.case-study': ApiCaseStudyCaseStudy;
       'api::contact-inquiry.contact-inquiry': ApiContactInquiryContactInquiry;
       'api::industry.industry': ApiIndustryIndustry;
@@ -1314,6 +1483,7 @@ declare module '@strapi/strapi' {
       'api::page.page': ApiPagePage;
       'api::service.service': ApiServiceService;
       'api::site-setting.site-setting': ApiSiteSettingSiteSetting;
+      'api::team-member.team-member': ApiTeamMemberTeamMember;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

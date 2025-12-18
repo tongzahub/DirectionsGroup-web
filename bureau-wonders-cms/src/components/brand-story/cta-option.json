@@ -1,0 +1,33 @@
+{
+  "collectionName": "components_brand_story_cta_options",
+  "info": {
+    "displayName": "CTA Option",
+    "description": "Secondary call-to-action options"
+  },
+  "options": {},
+  "attributes": {
+    "type": {
+      "type": "enumeration",
+      "enum": ["resource", "case-study", "consultation"],
+      "required": true
+    },
+    "title": {
+      "type": "string",
+      "required": true,
+      "maxLength": 80
+    },
+    "description": {
+      "type": "richtext",
+      "required": true
+    },
+    "link": {
+      "type": "string",
+      "required": true
+    },
+    "buttonText": {
+      "type": "string",
+      "required": false,
+      "maxLength": 30
+    }
+  }
+}

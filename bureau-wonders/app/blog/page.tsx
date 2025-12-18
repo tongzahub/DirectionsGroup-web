@@ -22,15 +22,16 @@ const categories = [
 ];
 
 interface BlogPageProps {
-  searchParams: {
+  searchParams: Promise<{
     category?: string;
-  };
+  }>;
 }
 
 export default async function BlogPage({ searchParams }: BlogPageProps) {
   let posts;
   let error = null;
-  const selectedCategory = searchParams.category;
+  const resolvedSearchParams = await searchParams;
+  const selectedCategory = resolvedSearchParams.category;
 
   try {
     posts = await strapiClient.getBlogPosts(
@@ -58,23 +59,31 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
       {/* Category Filter */}
       <section className="bg-white border-b border-neutral-200">
         <div className="container mx-auto px-4 sm:px-6 md:px-8 max-w-7xl">
-          <div className="flex flex-wrap gap-2 sm:gap-4 py-4">
-            {categories.map((category) => {
-              const isActive = selectedCategory === category.value || (!selectedCategory && !category.value);
-              return (
-                <Link
-                  key={category.name}
-                  href={category.value ? `/blog?category=${category.value}` : '/blog'}
-                  className={`px-4 sm:px-6 py-2 rounded-full font-semibold transition-colors ${
-                    isActive
-                      ? 'bg-primary-500 text-white'
-                      : 'bg-primary-100 text-neutral-800 hover:bg-primary-200'
-                  }`}
-                >
-                  {category.name}
-                </Link>
-              );
-            })}
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 py-6">
+            <div className="flex flex-wrap gap-2 sm:gap-4">
+              {categories.map((category) => {
+                const isActive = selectedCategory === category.value || (!selectedCategory && !category.value);
+                return (
+                  <Link
+                    key={category.name}
+                    href={category.value ? `/blog?category=${category.value}` : '/blog'}
+                    className={`px-4 sm:px-6 py-2 rounded-full font-semibold transition-colors ${
+                      isActive
+                        ? 'bg-primary-500 text-white'
+                        : 'bg-primary-100 text-neutral-800 hover:bg-primary-200'
+                    }`}
+                  >
+                    {category.name}
+                  </Link>
+                );
+              })}
+            </div>
+            
+            {posts && posts.length > 0 && (
+              <div className="text-sm text-neutral-600">
+                {posts.length} {posts.length === 1 ? 'post' : 'posts'} found
+              </div>
+            )}
           </div>
         </div>
       </section>
@@ -83,13 +92,23 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
       <section className="py-12 sm:py-16 md:py-20 lg:py-24">
         <div className="container mx-auto px-4 sm:px-6 md:px-8 max-w-7xl">
           {error ? (
-            <ErrorState
-              type="server"
-              title="Unable to Load Blog Posts"
-              message="We're having trouble loading the blog posts. Please try again in a moment."
-              onRetry={() => window.location.reload()}
-              retryLabel="Reload Page"
-            />
+            <div className="text-center py-12">
+              <div className="max-w-md mx-auto">
+                <div className="mb-4">
+                  <svg className="w-16 h-16 text-red-400 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
+                  </svg>
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Unable to Load Blog Posts</h3>
+                <p className="text-gray-600 mb-4">We're having trouble loading the blog posts. Please try again in a moment.</p>
+                <a 
+                  href="/blog"
+                  className="inline-block px-4 py-2 bg-primary-500 text-white rounded-lg hover:bg-primary-600 transition-colors"
+                >
+                  Reload Page
+                </a>
+              </div>
+            </div>
           ) : !posts || posts.length === 0 ? (
             <EmptyState
               title="No Blog Posts Yet"

@@ -1,0 +1,41 @@
+{
+  "collectionName": "components_brand_story_testimonials",
+  "info": {
+    "displayName": "Testimonial",
+    "description": "Client testimonial with attribution"
+  },
+  "options": {},
+  "attributes": {
+    "clientName": {
+      "type": "string",
+      "required": true,
+      "maxLength": 100
+    },
+    "clientTitle": {
+      "type": "string",
+      "required": false,
+      "maxLength": 100
+    },
+    "companyName": {
+      "type": "string",
+      "required": true,
+      "maxLength": 100
+    },
+    "quote": {
+      "type": "richtext",
+      "required": true
+    },
+    "avatar": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "companyLogo": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    }
+  }
+}

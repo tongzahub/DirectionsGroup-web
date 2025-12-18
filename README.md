@@ -322,7 +322,7 @@ DATABASE_PASSWORD=postgres
 
 ## 📝 License
 
-Private - The Bureau of Wonders
+Private - The Bureau of Wonders Company Limited
 
 ---
 
@@ -388,4 +388,4 @@ Private - The Bureau of Wonders
 
 ---
 
-**Built with ❤️ for The Bureau of Wonders**
+**Built with ❤️ for The Bureau of Wonders Company Limited**

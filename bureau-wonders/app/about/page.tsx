@@ -95,9 +95,37 @@ export default async function AboutPage() {
         <ContentSection
           content={pageContent.content}
           layout="single"
-          className="bg-white"
+          className="bg-white py-16 md:py-20"
         />
       </StaggeredReveal>
+
+      {/* Call to Action Section */}
+      <ScrollTriggeredReveal direction="up" delay={300}>
+        <section className="bg-gradient-to-br from-accent-mist-blue to-white py-16 md:py-20">
+          <div className="container mx-auto px-4 text-center">
+            <h2 className="text-3xl md:text-4xl font-bold text-neutral-gray-dark mb-6">
+              Ready to Create Something Extraordinary?
+            </h2>
+            <p className="text-lg text-neutral-gray-dark mb-8 max-w-2xl mx-auto">
+              Discover how The Bureau of Wonders can help your luxury brand tell its story and connect with the right audience.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href="/contact"
+                className="inline-flex items-center justify-center px-8 py-3 bg-primary-blue text-white font-semibold rounded-lg hover:bg-primary-blue/90 transition-colors"
+              >
+                Start a Conversation
+              </a>
+              <a
+                href="/services"
+                className="inline-flex items-center justify-center px-8 py-3 border-2 border-primary-blue text-primary-blue font-semibold rounded-lg hover:bg-primary-blue hover:text-white transition-colors"
+              >
+                Explore Our Services
+              </a>
+            </div>
+          </div>
+        </section>
+      </ScrollTriggeredReveal>
     </main>
   );
 }

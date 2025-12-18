@@ -166,8 +166,9 @@ We'd love to hear from you. Whether you're interested in our services, have a qu
 **Phone:** +1 (555) 123-4567
 
 **Office Address:**  
-123 Luxury Lane  
-New York, NY 10001
+989 Siam Piwat Tower 19th Floor Unit B2/1  
+Rama 1 Road, Pathumwan  
+Bangkok 10330, Thailand
 
 ## Office Hours
 
@@ -184,10 +185,10 @@ Fill out the form below and we'll get back to you within 24 hours.`,
 ];
 
 const siteSettings = {
-  siteName: 'The Bureau of Wonders',
+  siteName: 'The Bureau of Wonders Company Limited',
   contactEmail: 'hello@bureauofwonders.com',
   contactPhone: '+1 (555) 123-4567',
-  officeAddress: '123 Luxury Lane, New York, NY 10001',
+  officeAddress: '989 Siam Piwat Tower 19th Floor Unit B2/1 Rama 1 Road, Pathumwan, Bangkok 10330, Thailand',
   socialLinks: [
     { platform: 'Instagram', url: 'https://instagram.com/bureauofwonders' },
     { platform: 'LinkedIn', url: 'https://linkedin.com/company/bureauofwonders' },

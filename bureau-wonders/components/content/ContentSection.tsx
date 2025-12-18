@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { marked } from 'marked';
 import { RichText } from '@/types';
 import { ScrollReveal } from '@/components/animations';
 
@@ -22,10 +23,28 @@ const ContentSection: React.FC<ContentSectionProps> = ({
   // Render rich text content
   const renderContent = (text: RichText) => {
     if (typeof text === 'string') {
+      // Configure marked options for better rendering
+      marked.setOptions({
+        breaks: true,
+        gfm: true,
+      });
+      
+      // Convert markdown to HTML
+      const htmlContent = marked(text);
+      
       return (
         <div
-          className="prose prose-sm sm:prose-base md:prose-lg max-w-none text-neutral-gray-dark leading-relaxed"
-          dangerouslySetInnerHTML={{ __html: text }}
+          className="prose prose-sm sm:prose-base md:prose-lg lg:prose-xl max-w-none text-neutral-gray-dark leading-relaxed 
+                     prose-headings:text-neutral-gray-dark prose-headings:font-bold
+                     prose-h1:text-4xl prose-h1:mb-8 prose-h1:mt-0
+                     prose-h2:text-2xl prose-h2:mb-6 prose-h2:mt-12 prose-h2:first:mt-0
+                     prose-h3:text-xl prose-h3:mb-4 prose-h3:mt-8
+                     prose-p:mb-6 prose-p:leading-relaxed prose-p:text-neutral-gray-dark
+                     prose-ul:mb-6 prose-ul:space-y-2
+                     prose-li:text-neutral-gray-dark prose-li:leading-relaxed
+                     prose-strong:text-neutral-gray-dark prose-strong:font-semibold
+                     prose-a:text-primary-blue prose-a:no-underline hover:prose-a:underline"
+          dangerouslySetInnerHTML={{ __html: htmlContent }}
         />
       );
     }

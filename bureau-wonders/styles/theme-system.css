@@ -1,0 +1,444 @@
+/**
+ * Apple-Inspired Dual Theme System
+ * CSS Custom Properties for Light and Dark Themes
+ */
+
+/* Base theme variables - Light theme as default */
+:root {
+  /* Light Theme Surface Colors */
+  --color-surface-primary: #ffffff;
+  --color-surface-secondary: #f8f9fa;
+  --color-surface-tertiary: #f1f3f4;
+  --color-surface-elevated: #ffffff;
+  --color-surface-overlay: rgba(0, 0, 0, 0.05);
+  
+  /* Light Theme Text Colors */
+  --color-text-primary: #1d1d1f;
+  --color-text-secondary: #86868b;
+  --color-text-tertiary: #a1a1a6;
+  --color-text-inverse: #ffffff;
+  --color-text-accent: #8b7355;
+  
+  /* Light Theme Border Colors */
+  --color-border-primary: #d2d2d7;
+  --color-border-secondary: #e5e5ea;
+  --color-border-tertiary: #f2f2f7;
+  --color-border-focus: #8b7355;
+  --color-border-interactive: #c6c6c8;
+  
+  /* Light Theme Interactive Colors */
+  --color-interactive-hover: rgba(139, 115, 85, 0.08);
+  --color-interactive-active: rgba(139, 115, 85, 0.12);
+  --color-interactive-focus: rgba(139, 115, 85, 0.2);
+  --color-interactive-disabled: rgba(139, 115, 85, 0.3);
+  
+  /* Light Theme Accent Colors */
+  --color-accent-gold: #d4af37;
+  --color-accent-gold-light: #f4e4a6;
+  --color-accent-copper: #b87333;
+  --color-accent-copper-light: #d4a574;
+  --color-accent-primary: #8b7355;
+  --color-accent-secondary: #c3b78f;
+  
+  /* Light Theme Status Colors */
+  --color-status-success: #30d158;
+  --color-status-warning: #ff9f0a;
+  --color-status-error: #ff3b30;
+  --color-status-info: #007aff;
+  
+  /* Light Theme Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  
+  /* Light Theme Luxury Shadows */
+  --shadow-luxury-sm: 0 2px 8px rgba(139, 115, 85, 0.08);
+  --shadow-luxury-md: 0 4px 16px rgba(139, 115, 85, 0.12);
+  --shadow-luxury-lg: 0 8px 32px rgba(139, 115, 85, 0.16);
+  --shadow-luxury-xl: 0 16px 64px rgba(139, 115, 85, 0.2);
+  
+  /* Light Theme Interactive Shadows */
+  --shadow-interactive-hover: 0 4px 12px rgba(139, 115, 85, 0.15);
+  --shadow-interactive-focus: 0 0 0 4px rgba(139, 115, 85, 0.2);
+  --shadow-interactive-active: 0 2px 4px rgba(139, 115, 85, 0.2);
+  
+  /* Theme Transitions */
+  --transition-theme: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Theme Easing Functions */
+  --transition-easing-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-easing-decelerate: cubic-bezier(0, 0, 0.2, 1);
+  --transition-easing-accelerate: cubic-bezier(0.4, 0, 1, 1);
+  --transition-easing-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  
+  /* Theme Mode Indicator */
+  --theme-mode: 'light';
+}
+
+/* Dark theme overrides */
+[data-theme="dark"] {
+  /* Dark Theme Surface Colors */
+  --color-surface-primary: #000000;
+  --color-surface-secondary: #1d1d1f;
+  --color-surface-tertiary: #2d2d30;
+  --color-surface-elevated: #1d1d1f;
+  --color-surface-overlay: rgba(255, 255, 255, 0.05);
+  
+  /* Dark Theme Text Colors */
+  --color-text-primary: #f5f5f7;
+  --color-text-secondary: #a1a1a6;
+  --color-text-tertiary: #86868b;
+  --color-text-inverse: #1d1d1f;
+  --color-text-accent: #c4a882;
+  
+  /* Dark Theme Border Colors */
+  --color-border-primary: #424245;
+  --color-border-secondary: #38383a;
+  --color-border-tertiary: #2d2d30;
+  --color-border-focus: #c4a882;
+  --color-border-interactive: #48484a;
+  
+  /* Dark Theme Interactive Colors */
+  --color-interactive-hover: rgba(196, 168, 130, 0.12);
+  --color-interactive-active: rgba(196, 168, 130, 0.16);
+  --color-interactive-focus: rgba(196, 168, 130, 0.24);
+  --color-interactive-disabled: rgba(196, 168, 130, 0.3);
+  
+  /* Dark Theme Accent Colors */
+  --color-accent-gold: #ffd60a;
+  --color-accent-gold-light: #ffed4e;
+  --color-accent-copper: #ff9500;
+  --color-accent-copper-light: #ffb340;
+  --color-accent-primary: #c4a882;
+  --color-accent-secondary: #8b7355;
+  
+  /* Dark Theme Status Colors */
+  --color-status-success: #32d74b;
+  --color-status-warning: #ff9f0a;
+  --color-status-error: #ff453a;
+  --color-status-info: #0a84ff;
+  
+  /* Dark Theme Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.4);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.6), 0 10px 10px -5px rgba(0, 0, 0, 0.5);
+  
+  /* Dark Theme Luxury Shadows */
+  --shadow-luxury-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
+  --shadow-luxury-md: 0 4px 16px rgba(0, 0, 0, 0.5);
+  --shadow-luxury-lg: 0 8px 32px rgba(0, 0, 0, 0.6);
+  --shadow-luxury-xl: 0 16px 64px rgba(0, 0, 0, 0.7);
+  
+  /* Dark Theme Interactive Shadows */
+  --shadow-interactive-hover: 0 4px 12px rgba(196, 168, 130, 0.2);
+  --shadow-interactive-focus: 0 0 0 4px rgba(196, 168, 130, 0.3);
+  --shadow-interactive-active: 0 2px 4px rgba(0, 0, 0, 0.4);
+  
+  /* Theme Mode Indicator */
+  --theme-mode: 'dark';
+}
+
+/* System preference detection */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    /* Dark Theme Surface Colors */
+    --color-surface-primary: #000000;
+    --color-surface-secondary: #1d1d1f;
+    --color-surface-tertiary: #2d2d30;
+    --color-surface-elevated: #1d1d1f;
+    --color-surface-overlay: rgba(255, 255, 255, 0.05);
+    
+    /* Dark Theme Text Colors */
+    --color-text-primary: #f5f5f7;
+    --color-text-secondary: #a1a1a6;
+    --color-text-tertiary: #86868b;
+    --color-text-inverse: #1d1d1f;
+    --color-text-accent: #c4a882;
+    
+    /* Dark Theme Border Colors */
+    --color-border-primary: #424245;
+    --color-border-secondary: #38383a;
+    --color-border-tertiary: #2d2d30;
+    --color-border-focus: #c4a882;
+    --color-border-interactive: #48484a;
+    
+    /* Dark Theme Interactive Colors */
+    --color-interactive-hover: rgba(196, 168, 130, 0.12);
+    --color-interactive-active: rgba(196, 168, 130, 0.16);
+    --color-interactive-focus: rgba(196, 168, 130, 0.24);
+    --color-interactive-disabled: rgba(196, 168, 130, 0.3);
+    
+    /* Dark Theme Accent Colors */
+    --color-accent-gold: #ffd60a;
+    --color-accent-gold-light: #ffed4e;
+    --color-accent-copper: #ff9500;
+    --color-accent-copper-light: #ffb340;
+    --color-accent-primary: #c4a882;
+    --color-accent-secondary: #8b7355;
+    
+    /* Dark Theme Status Colors */
+    --color-status-success: #32d74b;
+    --color-status-warning: #ff9f0a;
+    --color-status-error: #ff453a;
+    --color-status-info: #0a84ff;
+    
+    /* Dark Theme Shadows */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.4);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.6), 0 10px 10px -5px rgba(0, 0, 0, 0.5);
+    
+    /* Dark Theme Luxury Shadows */
+    --shadow-luxury-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
+    --shadow-luxury-md: 0 4px 16px rgba(0, 0, 0, 0.5);
+    --shadow-luxury-lg: 0 8px 32px rgba(0, 0, 0, 0.6);
+    --shadow-luxury-xl: 0 16px 64px rgba(0, 0, 0, 0.7);
+    
+    /* Dark Theme Interactive Shadows */
+    --shadow-interactive-hover: 0 4px 12px rgba(196, 168, 130, 0.2);
+    --shadow-interactive-focus: 0 0 0 4px rgba(196, 168, 130, 0.3);
+    --shadow-interactive-active: 0 2px 4px rgba(0, 0, 0, 0.4);
+    
+    /* Theme Mode Indicator */
+    --theme-mode: 'dark';
+  }
+}
+
+/* Responsive design tokens */
+:root {
+  /* Mobile-first responsive tokens */
+  --container-padding: 1rem;
+  --section-padding: 3rem;
+  --card-padding: 1rem;
+  --button-height: 44px;
+  --touch-target: 44px;
+}
+
+@media (min-width: 640px) {
+  :root {
+    --container-padding: 1.5rem;
+    --section-padding: 4rem;
+    --card-padding: 1.5rem;
+    --button-height: 48px;
+    --touch-target: 48px;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --container-padding: 2rem;
+    --section-padding: 6rem;
+    --card-padding: 2rem;
+    --button-height: 40px;
+    --touch-target: 40px;
+  }
+}
+
+/* Theme transition classes */
+.theme-transition {
+  transition: 
+    background-color var(--transition-theme),
+    color var(--transition-theme),
+    border-color var(--transition-theme),
+    box-shadow var(--transition-theme),
+    opacity var(--transition-theme);
+}
+
+.theme-transition-fast {
+  transition: 
+    background-color var(--transition-fast),
+    color var(--transition-fast),
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.theme-transition-slow {
+  transition: 
+    background-color var(--transition-slow),
+    color var(--transition-slow),
+    border-color var(--transition-slow),
+    box-shadow var(--transition-slow);
+}
+
+/* Theme-aware component base classes */
+.theme-surface {
+  background-color: var(--color-surface-primary);
+  color: var(--color-text-primary);
+}
+
+.theme-surface-secondary {
+  background-color: var(--color-surface-secondary);
+  color: var(--color-text-primary);
+}
+
+.theme-surface-elevated {
+  background-color: var(--color-surface-elevated);
+  color: var(--color-text-primary);
+  box-shadow: var(--shadow-md);
+}
+
+.theme-text-primary {
+  color: var(--color-text-primary);
+}
+
+.theme-text-secondary {
+  color: var(--color-text-secondary);
+}
+
+.theme-text-accent {
+  color: var(--color-text-accent);
+}
+
+.theme-border {
+  border-color: var(--color-border-primary);
+}
+
+.theme-border-secondary {
+  border-color: var(--color-border-secondary);
+}
+
+/* Theme-aware interactive states */
+.theme-interactive {
+  transition: all var(--transition-fast);
+}
+
+.theme-interactive:hover {
+  background-color: var(--color-interactive-hover);
+}
+
+.theme-interactive:active {
+  background-color: var(--color-interactive-active);
+}
+
+.theme-interactive:focus-visible {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
+  box-shadow: var(--shadow-interactive-focus);
+}
+
+/* Theme-aware luxury components */
+.theme-luxury-card {
+  background-color: var(--color-surface-elevated);
+  border: 1px solid var(--color-border-secondary);
+  border-radius: 1rem;
+  box-shadow: var(--shadow-luxury-sm);
+  transition: all var(--transition-normal);
+}
+
+.theme-luxury-card:hover {
+  box-shadow: var(--shadow-luxury-md);
+  transform: translateY(-2px);
+}
+
+.theme-luxury-button {
+  background-color: var(--color-accent-primary);
+  color: var(--color-text-inverse);
+  border: none;
+  border-radius: 0.75rem;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  transition: all var(--transition-fast);
+  box-shadow: var(--shadow-luxury-sm);
+}
+
+.theme-luxury-button:hover {
+  background-color: var(--color-accent-secondary);
+  box-shadow: var(--shadow-luxury-md);
+  transform: translateY(-1px);
+}
+
+.theme-luxury-button:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-luxury-sm);
+}
+
+/* Theme-aware form elements */
+.theme-input {
+  background-color: var(--color-surface-secondary);
+  border: 1px solid var(--color-border-secondary);
+  color: var(--color-text-primary);
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  transition: all var(--transition-fast);
+}
+
+.theme-input:focus {
+  outline: none;
+  border-color: var(--color-border-focus);
+  box-shadow: var(--shadow-interactive-focus);
+}
+
+.theme-input::placeholder {
+  color: var(--color-text-tertiary);
+}
+
+/* Accessibility enhancements */
+@media (prefers-reduced-motion: reduce) {
+  .theme-transition,
+  .theme-transition-fast,
+  .theme-transition-slow,
+  .theme-interactive,
+  .theme-luxury-card,
+  .theme-luxury-button,
+  .theme-input {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --color-border-primary: currentColor;
+    --color-border-focus: currentColor;
+  }
+  
+  .theme-luxury-button {
+    border: 2px solid var(--color-text-inverse);
+  }
+  
+  .theme-input {
+    border-width: 2px;
+  }
+}
+
+/* Print styles */
+@media print {
+  :root {
+    --color-surface-primary: white;
+    --color-text-primary: black;
+    --shadow-sm: none;
+    --shadow-md: none;
+    --shadow-lg: none;
+    --shadow-xl: none;
+  }
+  
+  .theme-luxury-card,
+  .theme-luxury-button {
+    box-shadow: none !important;
+  }
+}
+
+/* Theme debugging utilities (development only) */
+.theme-debug {
+  position: relative;
+}
+
+.theme-debug::after {
+  content: var(--theme-mode);
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: var(--color-accent-gold);
+  color: var(--color-text-inverse);
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  border-radius: 0 0 0 0.25rem;
+  pointer-events: none;
+  z-index: 1000;
+}

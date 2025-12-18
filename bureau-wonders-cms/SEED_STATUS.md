@@ -22,12 +22,12 @@ The Site Settings single type needs to be created manually in Strapi admin:
 3. Click on it and fill in the following data:
 
 **Required Fields:**
-- Site Name: `The Bureau of Wonders`
+- Site Name: `The Bureau of Wonders Company Limited`
 - Contact Email: `hello@bureauofwonders.com`
 
 **Optional Fields:**
 - Contact Phone: `+1 (555) 123-4567`
-- Office Address: `123 Luxury Lane, New York, NY 10001`
+- Office Address: `989 Siam Piwat Tower 19th Floor Unit B2/1 Rama 1 Road, Pathumwan, Bangkok 10330, Thailand`
 - Homepage Intro: `We are The Bureau of Wonders, a luxury brand communications agency crafting extraordinary experiences for the world's most prestigious brands.`
 - Culture Statement: `At The Bureau of Wonders, we believe in the power of storytelling, the magic of creativity, and the importance of building lasting relationships with our clients and their audiences.`
 - Values: `["Excellence", "Innovation", "Integrity", "Collaboration", "Creativity"]`

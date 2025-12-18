@@ -1,0 +1,186 @@
+{
+  "kind": "singleType",
+  "collectionName": "brand_story",
+  "info": {
+    "singularName": "brand-story",
+    "pluralName": "brand-stories",
+    "displayName": "Brand Story",
+    "description": "StoryBrand framework-based brand narrative content"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "default": "Our Brand Story"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true,
+      "unique": true
+    },
+    "heroHeadline": {
+      "type": "richtext",
+      "required": true
+    },
+    "heroSubheadline": {
+      "type": "richtext",
+      "required": true
+    },
+    "heroBackgroundImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "heroCtaText": {
+      "type": "string",
+      "required": false,
+      "maxLength": 30,
+      "default": "Start Your Journey"
+    },
+    "heroCtaLink": {
+      "type": "string",
+      "required": false
+    },
+    "problemTitle": {
+      "type": "string",
+      "required": true,
+      "maxLength": 100
+    },
+    "problems": {
+      "type": "component",
+      "repeatable": true,
+      "component": "brand-story.problem-item"
+    },
+    "problemTransitionStatement": {
+      "type": "richtext",
+      "required": false
+    },
+    "guideTitle": {
+      "type": "string",
+      "required": true,
+      "maxLength": 100
+    },
+    "empathyStatement": {
+      "type": "richtext",
+      "required": true
+    },
+    "authorityElements": {
+      "type": "component",
+      "repeatable": true,
+      "component": "brand-story.authority-element"
+    },
+    "teamHighlights": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::team-member.team-member"
+    },
+    "planTitle": {
+      "type": "string",
+      "required": true,
+      "maxLength": 100
+    },
+    "planIntroduction": {
+      "type": "richtext",
+      "required": true
+    },
+    "processSteps": {
+      "type": "component",
+      "repeatable": true,
+      "component": "brand-story.process-step"
+    },
+    "reassuranceStatement": {
+      "type": "richtext",
+      "required": false
+    },
+    "successTitle": {
+      "type": "string",
+      "required": true,
+      "maxLength": 100
+    },
+    "successCaseStudies": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::case-study.case-study"
+    },
+    "overallImpactStatement": {
+      "type": "richtext",
+      "required": false
+    },
+    "stakesTitle": {
+      "type": "string",
+      "required": true,
+      "maxLength": 100
+    },
+    "failureScenarios": {
+      "type": "component",
+      "repeatable": true,
+      "component": "brand-story.failure-scenario"
+    },
+    "opportunityCostStatement": {
+      "type": "richtext",
+      "required": false
+    },
+    "transitionToActionStatement": {
+      "type": "richtext",
+      "required": false
+    },
+    "primaryCtaHeadline": {
+      "type": "string",
+      "required": true,
+      "maxLength": 100
+    },
+    "primaryCtaDescription": {
+      "type": "richtext",
+      "required": true
+    },
+    "primaryCtaButtonText": {
+      "type": "string",
+      "required": true,
+      "maxLength": 30
+    },
+    "primaryCtaFormFields": {
+      "type": "json",
+      "required": false
+    },
+    "secondaryCtaTitle": {
+      "type": "string",
+      "required": false,
+      "maxLength": 100
+    },
+    "secondaryCtaOptions": {
+      "type": "component",
+      "repeatable": true,
+      "component": "brand-story.cta-option"
+    },
+    "testimonials": {
+      "type": "component",
+      "repeatable": true,
+      "component": "brand-story.testimonial"
+    },
+    "successMetrics": {
+      "type": "component",
+      "repeatable": true,
+      "component": "brand-story.metric"
+    },
+    "seoTitle": {
+      "type": "string",
+      "maxLength": 60
+    },
+    "metaDescription": {
+      "type": "text",
+      "maxLength": 160
+    },
+    "ogImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    }
+  }
+}
