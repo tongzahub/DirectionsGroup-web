@@ -31,3 +31,6 @@ export * from './ErrorStates';
 
 // Content Refresh
 export * from './ContentRefresh';
+
+// Floating Lines
+export { default as FloatingLines } from './FloatingLines';

@@ -8,6 +8,8 @@ import { NavigationItem } from '@/types';
 import { SITE_NAME } from '@/lib/constants';
 import { StickyNavigation } from '@/components/animations';
 import { MobileNavigation, MobileSearch } from '@/components/navigation';
+import GooeyNavigation from '@/components/navigation/GooeyNavigation';
+import { ClientOnly } from '@/components/utils';
 import { useDeviceType } from '@/lib/responsive';
 
 interface HeaderProps {
@@ -77,52 +79,33 @@ export default function Header({ navigation }: HeaderProps) {
             </Link>
           </motion.div>
 
-          {/* Enhanced Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-1 lg:space-x-2 relative">
-            {navigation.map((item) => (
-              <motion.div
-                key={item.href}
-                className="relative"
-                onHoverStart={() => setHoveredItem(item.href)}
-                onHoverEnd={() => setHoveredItem(null)}
-              >
-                <Link
-                  href={item.href}
-                  className={`relative px-3 lg:px-4 py-2 rounded-lg text-sm lg:text-base font-medium transition-all duration-300 min-h-[44px] flex items-center z-10 ${
-                    isActive(item.href)
-                      ? 'text-primary-dark'
-                      : 'text-neutral-gray hover:text-primary'
-                  }`}
-                >
-                  {item.label}
-                  
-                  {/* Active indicator */}
-                  {isActive(item.href) && (
-                    <motion.div
-                      className="absolute bottom-0 left-1/2 w-6 h-0.5 bg-gradient-to-r from-primary-500 to-primary-600 rounded-full"
-                      layoutId="activeIndicator"
-                      initial={{ x: '-50%' }}
-                      animate={{ x: '-50%' }}
-                      transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-                    />
-                  )}
-                  
-                  {/* Hover background */}
-                  <AnimatePresence>
-                    {hoveredItem === item.href && !isActive(item.href) && (
-                      <motion.div
-                        className="absolute inset-0 bg-gradient-to-r from-primary-50 to-primary-100 rounded-lg"
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.8 }}
-                        transition={{ duration: 0.2 }}
-                      />
-                    )}
-                  </AnimatePresence>
-                </Link>
-              </motion.div>
-            ))}
-          </nav>
+          {/* Enhanced Gooey Desktop Navigation */}
+          <div className="hidden md:block">
+            <ClientOnly fallback={
+              <nav className="flex items-center space-x-4">
+                {navigation.map((item) => (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    className="px-6 py-3 text-white font-medium hover:text-accent-gold transition-colors"
+                  >
+                    {item.label}
+                  </a>
+                ))}
+              </nav>
+            }>
+              <GooeyNavigation 
+                navigation={navigation}
+                particleCount={15}
+                particleDistances={[90, 10]}
+                particleR={100}
+                initialActiveIndex={0}
+                animationTime={600}
+                timeVariance={300}
+                colors={[1, 2, 3, 1, 2, 3, 1, 4]}
+              />
+            </ClientOnly>
+          </div>
 
           {/* Mobile Navigation and Search */}
           <div className="md:hidden flex items-center space-x-2">

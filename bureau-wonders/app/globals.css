@@ -481,3 +481,15 @@ body {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Import Gooey Navigation Styles */
+@import '../styles/gooey-navigation.css';
+
+/* Import Magic Bento Styles */
+@import '../styles/magic-bento.css';
+
+/* Import Orb Background Styles */
+@import '../styles/orb-background.css';
+
+/* Import Services Page Styles */
+@import '../styles/services-page.css';

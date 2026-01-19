@@ -1,0 +1,237 @@
+/* Magic Bento Grid Styles */
+.magic-bento-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  padding: 1rem;
+}
+
+/* Bento Item Animations */
+.bento-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.bento-item:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Gradient Overlays */
+.bento-gradient-gold {
+  background: linear-gradient(135deg, #D4AF37 0%, #FFD700 100%);
+}
+
+.bento-gradient-bronze {
+  background: linear-gradient(135deg, #CD853F 0%, #F4A460 100%);
+}
+
+.bento-gradient-dark-gold {
+  background: linear-gradient(135deg, #B8860B 0%, #DAA520 100%);
+}
+
+.bento-gradient-brown {
+  background: linear-gradient(135deg, #8B4513 0%, #A0522D 100%);
+}
+
+.bento-gradient-plum {
+  background: linear-gradient(135deg, #DDA0DD 0%, #E6E6FA 100%);
+}
+
+.bento-gradient-teal {
+  background: linear-gradient(135deg, #20B2AA 0%, #48D1CC 100%);
+}
+
+/* Floating Elements */
+.bento-floating-element {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  animation: float 3s ease-in-out infinite;
+}
+
+.bento-floating-element:nth-child(2) {
+  animation-delay: 0.5s;
+  animation-duration: 2.5s;
+}
+
+.bento-floating-element:nth-child(3) {
+  animation-delay: 1s;
+  animation-duration: 3.5s;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateY(-10px) scale(1.2);
+    opacity: 0.7;
+  }
+}
+
+/* Responsive Grid */
+@media (max-width: 768px) {
+  .magic-bento-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .bento-item {
+    min-height: 200px !important;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .magic-bento-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Text Clamp Utility */
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Backdrop Blur Support */
+.backdrop-blur-sm {
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+/* Featured Badge Animation */
+.featured-badge {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+  }
+}
+
+/* Modal Animations */
+.modal-overlay {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.15),
+    0 10px 25px rgba(0, 0, 0, 0.1),
+    0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+/* Enhanced Typography for Job Modal */
+.job-content {
+  line-height: 1.7;
+}
+
+.job-content h1 {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: #111827;
+  margin: 2rem 0 1rem 0;
+}
+
+.job-content h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #111827;
+  margin: 1.5rem 0 0.75rem 0;
+  display: flex;
+  align-items: center;
+}
+
+.job-content h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #111827;
+  margin: 1.25rem 0 0.5rem 0;
+  display: flex;
+  align-items: center;
+}
+
+.job-content h4 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #374151;
+  margin: 1rem 0 0.5rem 0;
+}
+
+.job-content p {
+  margin-bottom: 1rem;
+  color: #4b5563;
+  line-height: 1.7;
+}
+
+.job-content strong {
+  font-weight: 600;
+  color: #111827;
+}
+
+/* Custom bullet points */
+.job-content .flex.items-start {
+  margin-bottom: 0.75rem;
+  padding-left: 0;
+}
+
+.job-content .flex.items-start:last-child {
+  margin-bottom: 0;
+}
+
+/* Section spacing */
+.job-content > *:first-child {
+  margin-top: 0;
+}
+
+.job-content > *:last-child {
+  margin-bottom: 0;
+}
+
+/* Scrollbar Styling */
+.job-modal-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.job-modal-scroll::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 3px;
+}
+
+.job-modal-scroll::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+.job-modal-scroll::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Luxury Touch */
+.luxury-gradient-text {
+  background: linear-gradient(135deg, #D4AF37, #FFD700, #B8860B);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Smooth Transitions */
+* {
+  transition-property: transform, opacity, box-shadow, background-color;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}

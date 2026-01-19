@@ -4,6 +4,8 @@ import { generatePageMetadata } from '@/lib/metadata';
 import { SITE_NAME } from '@/lib/constants';
 import HeroSection from '@/components/content/HeroSection';
 import { ParallaxHero } from '@/components/animations';
+import FloatingLines from '@/components/animations/FloatingLines';
+import { ClientOnly } from '@/components/utils';
 import { SiteSettings } from '@/types';
 
 // Enable ISR with 60s revalidation
@@ -54,6 +56,16 @@ export default async function Home() {
       ) : (
         <>
           <div className="relative min-h-screen bg-gradient-to-br from-neutral-900 via-neutral-800 to-primary-900 overflow-hidden">
+            {/* Floating Lines Background */}
+            <ClientOnly>
+              <FloatingLines 
+                className="opacity-40"
+                lineCount={10}
+                colors={['#D4AF37', '#B8860B', '#CD853F', '#FFD700', '#F4A460', '#DAA520']}
+                speed={0.6}
+              />
+            </ClientOnly>
+            
             {/* Background Pattern */}
             <div className="absolute inset-0 opacity-10">
               <div className="absolute inset-0 bg-gradient-to-r from-accent-gold/20 to-accent-copper/20"></div>

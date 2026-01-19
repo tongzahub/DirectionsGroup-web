@@ -1,0 +1,176 @@
+/**
+ * Services Page Enhanced Styles
+ * Luxury-focused styling for the services page
+ */
+
+/* Gradient utilities for services page */
+.bg-gradient-radial {
+  background: radial-gradient(circle, var(--tw-gradient-stops));
+}
+
+/* Enhanced service card animations */
+@keyframes serviceCardFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.service-card-float {
+  animation: serviceCardFloat 6s ease-in-out infinite;
+}
+
+/* Staggered animation delays for service cards */
+.service-card:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.service-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.service-card:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+/* Industry card hover effects */
+.industry-card {
+  position: relative;
+  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.industry-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(135deg, 
+    var(--color-primary-300), 
+    var(--color-accent-gold), 
+    var(--color-primary-300)
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.industry-card:hover::before {
+  opacity: 1;
+}
+
+/* Luxury text gradient */
+.text-luxury-gradient {
+  background: linear-gradient(135deg, 
+    var(--color-primary-700), 
+    var(--color-accent-gold), 
+    var(--color-primary-700)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-size: 200% auto;
+  animation: luxuryGradientShift 8s ease infinite;
+}
+
+@keyframes luxuryGradientShift {
+  0%, 100% {
+    background-position: 0% center;
+  }
+  50% {
+    background-position: 100% center;
+  }
+}
+
+/* Enhanced button hover effects */
+.luxury-button {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.luxury-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+}
+
+.luxury-button:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* Decorative background patterns */
+.services-pattern-bg {
+  background-image: 
+    radial-gradient(circle at 20% 30%, rgba(139, 115, 85, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(212, 175, 55, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(139, 115, 85, 0.03) 0%, transparent 70%);
+}
+
+/* Smooth scroll behavior for anchor links */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+}
+
+/* Enhanced focus states for accessibility */
+.services-page a:focus-visible,
+.services-page button:focus-visible {
+  outline: 3px solid var(--color-accent-gold);
+  outline-offset: 4px;
+  border-radius: 8px;
+}
+
+/* Responsive typography adjustments */
+@media (max-width: 640px) {
+  .luxury-text-display-xl {
+    font-size: clamp(2.5rem, 8vw, 4rem);
+  }
+  
+  .luxury-text-display-lg {
+    font-size: clamp(2rem, 6vw, 3rem);
+  }
+}
+
+/* Performance optimizations */
+.service-card,
+.industry-card {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .service-card-float,
+  .text-luxury-gradient {
+    animation: none;
+  }
+  
+  .service-card,
+  .industry-card,
+  .luxury-button {
+    transition: none;
+  }
+}
+
+/* Print styles */
+@media print {
+  .luxury-button,
+  .service-card::before,
+  .industry-card::before {
+    display: none;
+  }
+}

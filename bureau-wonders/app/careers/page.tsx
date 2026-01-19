@@ -4,6 +4,7 @@ import { generatePageMetadata } from '@/lib/metadata';
 import { JobListing } from '@/types';
 import ContentSection from '@/components/content/ContentSection';
 import JobListingGrid from '@/components/grids/JobListingGrid';
+import MagicBentoGrid from '@/components/grids/MagicBentoGrid';
 
 // Enable ISR with 60s revalidation
 export const revalidate = 60;
@@ -120,7 +121,7 @@ export default async function CareersPage() {
           </h2>
 
           {jobListings.length > 0 ? (
-            <JobListingGrid jobs={jobListings} />
+            <MagicBentoGrid jobs={jobListings} />
           ) : (
             <div className="text-center py-8 sm:py-12">
               <div className="inline-flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-accent-mist mb-3 sm:mb-4">

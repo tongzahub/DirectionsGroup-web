@@ -6,6 +6,7 @@ import { Service, Industry, Page } from '@/types';
 import Card from '@/components/ui/Card';
 import { ParallaxServiceShowcase, ParallaxHero } from '@/components/animations';
 import { serviceShowcasePresets } from '@/components/animations/ParallaxServiceShowcase';
+import { FadeInUp, StaggerReveal } from '@/components/animations';
 import { cn } from '@/lib/utils';
 
 // Enable ISR with 300s revalidation
@@ -141,145 +142,312 @@ export default async function ServicesPage() {
   }
 
   return (
-    <main className="min-h-screen">
-      {/* Hero Section with Parallax */}
+    <main className="min-h-screen bg-gradient-to-b from-neutral-50 to-white services-page services-pattern-bg">
+      {/* Enhanced Hero Section with Parallax */}
       <ParallaxHero
-        height="h-96 md:h-[500px] lg:h-[600px]"
-        overlayGradient="from-primary-200/80 via-white/60 to-primary-200/80"
-        intensity={0.4}
-        enableMultiLayer={false}
+        height="h-[70vh] md:h-[80vh] lg:h-[85vh]"
+        overlayGradient="from-primary-100/90 via-white/70 to-primary-50/90"
+        intensity={0.3}
+        enableMultiLayer={true}
         decorativeElements={true}
       >
-        <div className="text-center text-neutral-800">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 sm:mb-6 drop-shadow-sm">
-            Our Services
-          </h1>
-          <p className="text-lg sm:text-xl md:text-2xl leading-relaxed max-w-4xl mx-auto drop-shadow-sm">
-            Comprehensive luxury brand communications solutions tailored to elevate your brand
-          </p>
-        </div>
+        <FadeInUp delay={0.2}>
+          <div className="text-center text-neutral-800 max-w-6xl mx-auto">
+            <div className="mb-6 inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full border border-white/30">
+              <span className="text-sm font-medium text-primary-700 tracking-wide uppercase">
+                Premium Services
+              </span>
+            </div>
+            <h1 className="luxury-text-display-xl font-bold mb-6 text-shadow-md text-luxury-gradient">
+              Elevate Your Brand
+            </h1>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-light mb-8 text-neutral-700 leading-relaxed">
+              Comprehensive luxury communications solutions
+            </h2>
+            <p className="text-lg sm:text-xl md:text-2xl leading-relaxed max-w-4xl mx-auto text-neutral-600 font-light">
+              Crafted for discerning brands that demand excellence in every touchpoint
+            </p>
+            
+            {/* CTA Buttons */}
+            <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <Link 
+                href="/contact"
+                className="group luxury-button inline-flex items-center px-8 py-4 bg-primary-600 text-white rounded-full font-semibold text-lg hover:bg-primary-700 transition-all duration-300 hover:scale-105 luxury-shadow-md hover:luxury-shadow-lg relative z-10"
+              >
+                Start Your Journey
+                <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </Link>
+              <Link 
+                href="#services-overview"
+                className="inline-flex items-center px-8 py-4 bg-white/80 backdrop-blur-sm text-primary-700 rounded-full font-semibold text-lg hover:bg-white transition-all duration-300 hover:scale-105 luxury-shadow-sm hover:luxury-shadow-md border border-primary-200"
+              >
+                Explore Services
+              </Link>
+            </div>
+          </div>
+        </FadeInUp>
       </ParallaxHero>
 
-      {/* Services Grid with Parallax */}
+      {/* Enhanced Services Grid with Parallax */}
       {services.length > 0 && (
-        <ParallaxServiceShowcase
-          className="py-16 sm:py-20 md:py-24 lg:py-28 bg-white"
-          backgroundElements={serviceShowcasePresets?.communications?.backgroundElements as any || []}
-          intensity={0.3}
-          enableInteraction={true}
-        >
-          <div className="container mx-auto px-4 sm:px-6 md:px-8 max-w-7xl">
-            <div className="text-center mb-12 sm:mb-16">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-neutral-800 mb-4">
-                What We Offer
-              </h2>
-              <p className="text-lg sm:text-xl text-neutral-600 max-w-3xl mx-auto">
-                Strategic services designed to amplify your brand's presence in the luxury market
-              </p>
-            </div>
+        <section id="services-overview" className="py-20 sm:py-24 md:py-28 lg:py-32 bg-white relative overflow-hidden">
+          {/* Background decorative elements */}
+          <div className="absolute inset-0 pointer-events-none">
+            <div className="absolute top-20 left-10 w-72 h-72 bg-primary-100 rounded-full blur-3xl opacity-30" />
+            <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent-gold/20 rounded-full blur-3xl opacity-20" />
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-radial from-primary-50 to-transparent opacity-40" />
+          </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
+          <div className="luxury-container relative z-10">
+            <FadeInUp delay={0.1}>
+              <div className="text-center mb-16 sm:mb-20">
+                <div className="mb-6 inline-flex items-center px-4 py-2 bg-primary-100 rounded-full">
+                  <span className="text-sm font-medium text-primary-700 tracking-wide uppercase">
+                    Our Expertise
+                  </span>
+                </div>
+                <h2 className="luxury-text-display-lg font-bold text-neutral-800 mb-6">
+                  Exceptional Services
+                </h2>
+                <p className="text-xl sm:text-2xl text-neutral-600 max-w-4xl mx-auto font-light leading-relaxed">
+                  Strategic services designed to amplify your brand's presence in the luxury market
+                </p>
+              </div>
+            </FadeInUp>
+
+            <StaggerReveal className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-10">
               {services.map((service, index) => {
-                // Use different presets for different services
-                const presetKey = index === 0 ? 'communications' : index === 1 ? 'events' : 'crm';
+                const gradients = [
+                  'from-blue-50 to-indigo-50',
+                  'from-amber-50 to-orange-50', 
+                  'from-emerald-50 to-teal-50'
+                ];
+                const iconColors = [
+                  'text-blue-600',
+                  'text-amber-600',
+                  'text-emerald-600'
+                ];
+                const borderColors = [
+                  'hover:border-blue-200',
+                  'hover:border-amber-200',
+                  'hover:border-emerald-200'
+                ];
                 
                 return (
-                  <Link key={service.id} href={`/services/${service.slug}`}>
-                    <Card 
-                      className={`h-full p-6 sm:p-8 hover:shadow-2xl transition-all duration-300 cursor-pointer group border-2 border-transparent hover:border-primary-500 animate-fade-in-up relative overflow-hidden`}
-                    >
-                      {/* Service-specific background elements */}
-                      <div className="absolute inset-0 opacity-5 pointer-events-none">
+                  <Link key={service.id} href={`/services/${service.slug}`} className="group">
+                    <div className={cn(
+                      "service-card relative h-full p-8 lg:p-10 rounded-3xl border-2 border-transparent transition-all duration-500 cursor-pointer overflow-hidden",
+                      "bg-gradient-to-br", gradients[index % 3],
+                      "hover:scale-[1.02] hover:luxury-shadow-xl service-card-float",
+                      borderColors[index % 3],
+                      "backdrop-blur-sm"
+                    )}>
+                      {/* Animated background pattern */}
+                      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        <div className="absolute inset-0 bg-gradient-to-br from-white/50 to-transparent" />
                         <div className={cn(
-                          "absolute top-2 right-2 w-16 h-16 rounded-full blur-lg",
-                          index === 0 ? "bg-blue-200" : index === 1 ? "bg-yellow-200" : "bg-green-200"
+                          "absolute top-4 right-4 w-24 h-24 rounded-full blur-2xl transition-all duration-500 group-hover:scale-150",
+                          index === 0 ? "bg-blue-200/50" : index === 1 ? "bg-amber-200/50" : "bg-emerald-200/50"
                         )} />
                       </div>
                       
+                      {/* Service Icon */}
                       {service.icon && (
-                        <div className="text-5xl sm:text-6xl mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300 relative z-10">
+                        <div className={cn(
+                          "text-6xl lg:text-7xl mb-6 transition-all duration-500 relative z-10",
+                          "group-hover:scale-110 group-hover:rotate-3",
+                          iconColors[index % 3]
+                        )}>
                           {service.icon}
                         </div>
                       )}
-                      <h3 className="text-xl sm:text-2xl font-bold text-neutral-800 mb-3 sm:mb-4 group-hover:text-primary-500 transition-colors relative z-10">
+                      
+                      {/* Service Title */}
+                      <h3 className="text-2xl lg:text-3xl font-bold text-neutral-800 mb-4 group-hover:text-primary-700 transition-colors duration-300 relative z-10 leading-tight">
                         {service.title}
                       </h3>
-                      <div className="text-neutral-600 text-sm sm:text-base leading-relaxed line-clamp-4 mb-4 relative z-10">
+                      
+                      {/* Service Description */}
+                      <div className="text-neutral-600 text-base lg:text-lg leading-relaxed mb-6 relative z-10 font-light">
                         {typeof service.description === 'string' 
-                          ? service.description.replace(/[#*]/g, '').substring(0, 180) + '...'
-                          : 'Learn more about this service'}
+                          ? service.description.replace(/[#*]/g, '').substring(0, 160) + '...'
+                          : 'Discover how we can elevate your brand with our specialized expertise.'}
                       </div>
-                      <div className="mt-auto pt-4 text-primary-500 font-semibold group-hover:translate-x-2 transition-transform inline-flex items-center relative z-10">
-                        Learn More 
-                        <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                        </svg>
+                      
+                      {/* CTA */}
+                      <div className="mt-auto pt-6 relative z-10">
+                        <div className="inline-flex items-center text-primary-600 font-semibold text-lg group-hover:text-primary-700 transition-all duration-300 group-hover:translate-x-2">
+                          Explore Service
+                          <svg className="w-5 h-5 ml-2 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                          </svg>
+                        </div>
                       </div>
-                    </Card>
+                    </div>
                   </Link>
                 );
               })}
-            </div>
-          </div>
-        </ParallaxServiceShowcase>
-      )}
-
-      {/* Industries Section */}
-      {industries.length > 0 && (
-        <section className="py-16 sm:py-20 md:py-24 lg:py-28 bg-gradient-to-b from-primary-100 to-white">
-          <div className="container mx-auto px-4 sm:px-6 md:px-8 max-w-7xl">
-            <div className="text-center mb-12 sm:mb-16">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-neutral-800 mb-4">
-                Industries We Serve
-              </h2>
-              <p className="text-lg sm:text-xl text-neutral-600 max-w-3xl mx-auto">
-                Specialized expertise across the luxury landscape
-              </p>
-            </div>
-            
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6 md:gap-8">
-              {industries.map((industry) => (
-                <Card
-                  key={industry.id}
-                  className="text-center p-5 sm:p-6 md:p-8 hover:shadow-xl hover:scale-105 transition-all duration-300 bg-white group cursor-pointer animate-fade-in-up"
-                >
-                  {industry.icon && (
-                    <div className="text-4xl sm:text-5xl mb-3 sm:mb-4 group-hover:scale-110 transition-transform duration-300">
-                      {industry.icon}
-                    </div>
-                  )}
-                  <h3 className="text-sm sm:text-base md:text-lg font-semibold text-neutral-800 group-hover:text-primary-500 transition-colors">
-                    {industry.name}
-                  </h3>
-                  {industry.description && (
-                    <p className="text-xs sm:text-sm text-neutral-600 mt-2 line-clamp-2">
-                      {typeof industry.description === 'string' 
-                        ? industry.description.replace(/[#*]/g, '').substring(0, 60)
-                        : ''}
-                    </p>
-                  )}
-                </Card>
-              ))}
-            </div>
+            </StaggerReveal>
           </div>
         </section>
       )}
 
-      {/* CTA Section */}
-      <section className="py-16 sm:py-20 md:py-24 bg-primary-800 text-white">
-        <div className="container mx-auto px-4 sm:px-6 md:px-8 max-w-4xl text-center">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6">
-            Ready to Elevate Your Brand?
-          </h2>
-          <p className="text-lg sm:text-xl mb-8 sm:mb-10 text-white/90">
-            Let's discuss how we can help you achieve your communications goals
-          </p>
-          <Link 
-            href="/contact"
-            className="inline-block bg-accent-gold text-neutral-900 px-8 sm:px-10 py-3 sm:py-4 rounded-full font-semibold text-base sm:text-lg hover:bg-accent-gold-light transition-all duration-300 hover:scale-105 shadow-xl hover:shadow-2xl"
-          >
-            Get in Touch
-          </Link>
+      {/* Enhanced Industries Section */}
+      {industries.length > 0 && (
+        <section className="py-20 sm:py-24 md:py-28 lg:py-32 bg-gradient-to-b from-primary-50 via-white to-neutral-50 relative overflow-hidden">
+          {/* Background decorative elements */}
+          <div className="absolute inset-0 pointer-events-none">
+            <div className="absolute top-10 right-20 w-64 h-64 bg-accent-gold/10 rounded-full blur-3xl" />
+            <div className="absolute bottom-20 left-20 w-80 h-80 bg-primary-200/20 rounded-full blur-3xl" />
+          </div>
+
+          <div className="luxury-container relative z-10">
+            <FadeInUp delay={0.2}>
+              <div className="text-center mb-16 sm:mb-20">
+                <div className="mb-6 inline-flex items-center px-4 py-2 bg-accent-gold/10 rounded-full">
+                  <span className="text-sm font-medium text-accent-gold tracking-wide uppercase">
+                    Luxury Sectors
+                  </span>
+                </div>
+                <h2 className="luxury-text-display-lg font-bold text-neutral-800 mb-6">
+                  Industries We Serve
+                </h2>
+                <p className="text-xl sm:text-2xl text-neutral-600 max-w-4xl mx-auto font-light leading-relaxed">
+                  Specialized expertise across the luxury landscape, tailored to each sector's unique requirements
+                </p>
+              </div>
+            </FadeInUp>
+            
+            <StaggerReveal className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 sm:gap-8">
+              {industries.map((industry, index) => (
+                <div
+                  key={industry.id}
+                  className="group relative"
+                >
+                  <div className="industry-card relative text-center p-6 sm:p-8 rounded-2xl bg-white/80 backdrop-blur-sm border border-white/50 hover:bg-white hover:luxury-shadow-lg transition-all duration-500 cursor-pointer overflow-hidden hover:scale-105">
+                    {/* Hover background effect */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary-50 to-accent-gold/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    
+                    {/* Industry Icon */}
+                    {industry.icon && (
+                      <div className="text-4xl sm:text-5xl mb-4 group-hover:scale-110 transition-all duration-500 relative z-10 group-hover:rotate-3">
+                        {industry.icon}
+                      </div>
+                    )}
+                    
+                    {/* Industry Name */}
+                    <h3 className="text-sm sm:text-base font-semibold text-neutral-800 group-hover:text-primary-600 transition-colors duration-300 relative z-10 mb-2">
+                      {industry.name}
+                    </h3>
+                    
+                    {/* Industry Description */}
+                    {industry.description && (
+                      <p className="text-xs sm:text-sm text-neutral-600 group-hover:text-neutral-700 transition-colors duration-300 relative z-10 line-clamp-2 font-light">
+                        {typeof industry.description === 'string' 
+                          ? industry.description.replace(/[#*]/g, '').substring(0, 50) + '...'
+                          : ''}
+                      </p>
+                    )}
+
+                    {/* Decorative element */}
+                    <div className="absolute bottom-2 right-2 w-8 h-8 bg-primary-100 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:scale-150 blur-sm" />
+                  </div>
+                </div>
+              ))}
+            </StaggerReveal>
+
+            {/* Additional Industries CTA */}
+            <FadeInUp delay={0.4}>
+              <div className="text-center mt-16">
+                <p className="text-lg text-neutral-600 mb-6 font-light">
+                  Don't see your industry? We work with brands across all luxury sectors.
+                </p>
+                <Link 
+                  href="/contact"
+                  className="luxury-button inline-flex items-center px-8 py-4 bg-primary-600 text-white rounded-full font-semibold hover:bg-primary-700 transition-all duration-300 hover:scale-105 luxury-shadow-md hover:luxury-shadow-lg relative z-10"
+                >
+                  Discuss Your Sector
+                  <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </Link>
+              </div>
+            </FadeInUp>
+          </div>
+        </section>
+      )}
+
+      {/* Enhanced CTA Section */}
+      <section className="py-20 sm:py-24 md:py-28 lg:py-32 bg-gradient-to-br from-primary-800 via-primary-900 to-neutral-900 text-white relative overflow-hidden">
+        {/* Background decorative elements */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-20 left-20 w-96 h-96 bg-accent-gold/10 rounded-full blur-3xl" />
+          <div className="absolute bottom-20 right-20 w-80 h-80 bg-white/5 rounded-full blur-3xl" />
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-gradient-radial from-primary-700/20 to-transparent" />
+        </div>
+
+        <div className="luxury-container relative z-10">
+          <FadeInUp delay={0.1}>
+            <div className="text-center max-w-5xl mx-auto">
+              <div className="mb-8 inline-flex items-center px-6 py-3 bg-white/10 backdrop-blur-sm rounded-full border border-white/20">
+                <span className="text-sm font-medium text-accent-gold tracking-wide uppercase">
+                  Ready to Begin?
+                </span>
+              </div>
+              
+              <h2 className="luxury-text-display-lg font-bold mb-6 text-shadow-lg">
+                Transform Your Brand Story
+              </h2>
+              
+              <p className="text-xl sm:text-2xl mb-4 text-white/90 font-light leading-relaxed max-w-4xl mx-auto">
+                Let's craft a communications strategy that reflects your brand's true luxury
+              </p>
+              
+              <p className="text-lg text-white/70 mb-12 font-light max-w-3xl mx-auto">
+                Schedule a consultation to discover how we can elevate your brand's presence in the luxury market
+              </p>
+              
+              {/* Enhanced CTA Buttons */}
+              <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                <Link 
+                  href="/contact"
+                  className="group luxury-button inline-flex items-center px-10 py-5 bg-accent-gold text-neutral-900 rounded-full font-semibold text-lg hover:bg-accent-gold-light transition-all duration-300 hover:scale-105 luxury-shadow-xl hover:luxury-shadow-2xl relative z-10"
+                >
+                  Start Your Journey
+                  <svg className="w-6 h-6 ml-3 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </Link>
+                
+                <Link 
+                  href="/about"
+                  className="group luxury-button inline-flex items-center px-10 py-5 bg-white/10 backdrop-blur-sm text-white rounded-full font-semibold text-lg hover:bg-white/20 transition-all duration-300 hover:scale-105 border border-white/30 hover:border-white/50 relative z-10"
+                >
+                  Learn About Us
+                  <svg className="w-6 h-6 ml-3 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </Link>
+              </div>
+              
+              {/* Trust indicators */}
+              <div className="mt-16 pt-12 border-t border-white/20">
+                <p className="text-sm text-white/60 mb-6 font-light">
+                  Trusted by luxury brands worldwide
+                </p>
+                <div className="flex flex-wrap justify-center items-center gap-8 opacity-60">
+                  <div className="text-2xl">💎</div>
+                  <div className="text-2xl">⌚</div>
+                  <div className="text-2xl">👗</div>
+                  <div className="text-2xl">🏛️</div>
+                  <div className="text-2xl">🎨</div>
+                  <div className="text-2xl">🏨</div>
+                </div>
+              </div>
+            </div>
+          </FadeInUp>
         </div>
       </section>
 

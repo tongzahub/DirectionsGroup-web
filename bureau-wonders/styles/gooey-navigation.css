@@ -1,0 +1,148 @@
+/* Enhanced Gooey Navigation Styles */
+.gooey-nav {
+  filter: url(#gooey-effect);
+  position: relative;
+}
+
+.gooey-nav::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(45deg, 
+    rgba(212, 175, 55, 0.2), 
+    rgba(184, 134, 11, 0.15), 
+    rgba(205, 133, 63, 0.2), 
+    rgba(255, 215, 0, 0.15)
+  );
+  border-radius: inherit;
+  z-index: -1;
+  animation: luxury-glow 4s ease-in-out infinite alternate;
+}
+
+.gooey-nav::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.9);
+  border-radius: inherit;
+  z-index: -1;
+  backdrop-filter: blur(25px);
+}
+
+@keyframes luxury-glow {
+  0% {
+    opacity: 0.4;
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.01) rotate(0.5deg);
+  }
+  100% {
+    opacity: 0.4;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+/* Enhanced backdrop blur for luxury navigation */
+.luxury-nav-backdrop {
+  backdrop-filter: blur(25px) saturate(200%);
+  -webkit-backdrop-filter: blur(25px) saturate(200%);
+  background: rgba(0, 0, 0, 0.85);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  box-shadow: 
+    0 12px 40px rgba(0, 0, 0, 0.3),
+    0 4px 16px rgba(212, 175, 55, 0.1),
+    inset 0 1px 0 rgba(212, 175, 55, 0.2);
+}
+
+/* Text contrast enhancement */
+.luxury-nav-text {
+  font-weight: 600;
+  letter-spacing: 0.025em;
+  text-rendering: optimizeLegibility;
+}
+
+.luxury-nav-text--active {
+  font-weight: 700;
+  text-shadow: none;
+}
+
+.luxury-nav-text--inactive {
+  color: #FFFFFF;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+/* Enhanced navigation item styling */
+.gooey-nav-item {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 32px;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.025em;
+  white-space: nowrap;
+  min-height: 44px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Ensure background covers text completely */
+.gooey-nav-item::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  padding: 2px;
+  background: transparent;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: xor;
+  transition: all 0.3s ease;
+}
+
+.gooey-nav-item:hover::before,
+.gooey-nav-item.active::before {
+  background: linear-gradient(45deg, rgba(212, 175, 55, 0.3), rgba(255, 215, 0, 0.3));
+}
+
+/* Floating lines enhancements */
+.floating-lines-container {
+  mask: linear-gradient(
+    to bottom,
+    transparent 0%,
+    black 10%,
+    black 90%,
+    transparent 100%
+  );
+}
+
+/* Luxury brand color palette for animations */
+:root {
+  --luxury-gold: #D4AF37;
+  --luxury-gold-light: #FFD700;
+  --luxury-gold-dark: #B8860B;
+  --luxury-copper: #CD853F;
+  --luxury-bronze: #CD7F32;
+  --luxury-champagne: #F4A460;
+}
+
+/* Smooth transitions for luxury feel */
+.luxury-transition {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Gooey blob animation */
+@keyframes gooey-blob {
+  0%, 100% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+  50% {
+    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+  }
+}
+
+.gooey-blob {
+  animation: gooey-blob 8s ease-in-out infinite;
+}
